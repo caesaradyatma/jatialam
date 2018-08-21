@@ -23,20 +23,40 @@ class ItemsController extends Controller
           
         ]);
 
-        $name = $request->input('name');
-        $measurement = $request->input('measurement');
-        $type = $request->input('type');
+        $item = new Item;
+        $item->name = $request->input('name');
+        $item->type = $request->input('measurement');
+        $item->measurement = $request->input('measurement');
+        $item->save();
+    }
+
+    public function show($id){
+
+        $item = Item::where('deleted_at',NULL)->where('id',$id)->get();
+        return view('Item.show')->with('item',$item);
+
     }
 
     public function edit(){
-
+        return view('Items.edit');
     }
 
-    public function update(){
+    public function update(Request $request, $id){
+        $this->validate($request,[
+          'type' => 'required',
+          'name' => 'required',
+          
+        ]);
+
+        $item = Item::find($id);
+        $item->name = $request->input('name');
+        $item->type = $request->input('measurement');
+        $item->measurement = $request->input('measurement');
+        $item->save();
 
     }
 
     public function destroy(){
-
+        
     }
 }
