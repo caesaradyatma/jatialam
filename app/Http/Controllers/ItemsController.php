@@ -28,6 +28,8 @@ class ItemsController extends Controller
         $item->type = $request->input('measurement');
         $item->measurement = $request->input('measurement');
         $item->save();
+
+        return redirect('/items')->with('success','Item Added');
     }
 
     public function show($id){
@@ -53,10 +55,16 @@ class ItemsController extends Controller
         $item->type = $request->input('measurement');
         $item->measurement = $request->input('measurement');
         $item->save();
-
+        
+        return redirect('/items')->with('success','Item Updated');
     }
 
-    public function destroy(){
-        
+    public function destroy($id){
+        $item = Item::find($id);
+        $date = ('Y-m-d');
+        $item->deleted_at = $date;
+        $item->save();
+
+        return redirect('/items')->with('success','Item Deleted');
     }
 }
