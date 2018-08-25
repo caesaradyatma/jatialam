@@ -3,8 +3,7 @@
         <i class="fa fa-caret-down"></i>
     </button>
         <div class="dropdown-container">
-            <a href="#">Tambah Barang</a>
-            <a href="/inventory">Daftar Gudang</a>
+            <a href="/inventorypage">Daftar Gudang</a>
             <a href="#">Pengaturan</a>
         </div>
     <a href="#services">Procurement</a>
