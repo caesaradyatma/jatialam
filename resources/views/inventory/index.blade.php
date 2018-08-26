@@ -5,7 +5,7 @@
 <div class="container">
     <h2>Data Barang</h2>
     <hr>
-<a href = "/inventory/item/create" class="btn btn-primary" style="margin-top:10px;margin-bottom:15px;">Tambah Grup Barang</a> <br>
+<a href = "/inventory/item/create" class="btn btn-primary" style="margin-top:10px;margin-bottom:15px;">Tambah Ukuran Barang</a> <br>
 
 @if(count($lists) > 0)
 <table class="table table-hover">
@@ -13,8 +13,8 @@
         <th>Nama Barang</th>
         <th>Tipe Barang</th>
         <th>Ukuran</th>
-        <th>Stok Barang</th>
-        <th>Reorder Level</th>
+        <th>Status</th>
+        <th>Details</th>
     </tr>
 
  @foreach($lists as $list)     
