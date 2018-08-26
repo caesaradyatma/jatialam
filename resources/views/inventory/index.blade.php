@@ -5,7 +5,7 @@
 <div class="container">
     <h2>Data Barang</h2>
     <hr>
-<a href = "/inventory/create" class="btn btn-primary" style="margin-top:10px;margin-bottom:15px;">Tambah Grup Barang</a> <br>
+<a href = "/inventory/item/create" class="btn btn-primary" style="margin-top:10px;margin-bottom:15px;">Tambah Grup Barang</a> <br>
 
 @if(count($lists) > 0)
 <table class="table table-hover">
@@ -24,7 +24,7 @@
     <td>{{$list->cat_code}}</td>
     <td>{{$list->cat_measurement}}</td>
     <td>{{$list->cat_measurement}}</td>
-    <td><a href="/inventory" class="btn btn-default">Details</a></td>
+    <td><a href="/inventorylists/{{$list->id}}" class="btn btn-default">Details</a></td>
 </tr>
 
 @endforeach

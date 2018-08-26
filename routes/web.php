@@ -20,4 +20,10 @@ Route::get('/','HomeController@index');
 
 Route::get('/inventorypage','InventorypageController@pages');
 
+Route::get('/inventory/item/create','ItemController@create');
+
+Route::post('/inventory/item','ItemController@store');
+
+
+
 Route::resource('inventory','InventoryController');
