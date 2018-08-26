@@ -17,7 +17,10 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        return view('inventory.index');
+        $lists = Inventory::where('cat_delete', NULL)->orderBy('created_at','desc')->paginate(10);
+       
+        return view ('inventory.index')->with('lists', $lists);
+        
     }
 
     /**

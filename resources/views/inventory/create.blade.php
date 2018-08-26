@@ -3,6 +3,8 @@
 @section ('content')
     <h1>Barang Baru</h1>
     <hr>
+
+    <a href = "/inventory" class="btn btn-primary" style="margin-top:0px; margin-bottom:15px;">Kembali</a> <br>
     {!! Form::open(['action'=> 'InventoryController@store','method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
             <div class="form-group">
@@ -20,8 +22,8 @@
                     {{Form::text('cat_measurement','',['class' => 'form-control', 'placeholder' => 'Ukuran'])}}
                 </div>  
 
-            <div class="form-group" style="margin-left:20%">
-                {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
+            <div class="form-group" style="float:right">
+                {{Form::submit('Submit',['class'=>'btn btn-success'])}}
             </div> 
 
     {!! Form::close() !!}
