@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+
+use App\Inventory;
 
 class InventoryController extends Controller
 {
@@ -34,7 +38,14 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lists = new Inventory;
+        $lists->cat_name = $request->input('cat_name');
+        $lists->cat_code = $request->input('cat_code');
+        $lists->cat_measurement = $request->input('cat_measurement');
+ 
+        $lists->save();
+ 
+        return redirect('/inventory')->with('success','Successfully Added');
     }
 
     /**
