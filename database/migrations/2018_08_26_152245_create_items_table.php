@@ -16,12 +16,12 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('item_name');
-            $table->string('item_measurement');
-            $table->integer('item_qty');
-            $table->integer('item_assembly');
-            $table->integer('cat_id');
-            $table->mediumText('item_description');
+            $table->string('item_name')->nullable();
+            $table->string('item_measurement')->nullable();
+            $table->integer('item_qty')->nullable();
+            $table->integer('item_assembly')->nullable();
+            $table->integer('cat_id')->nullable();
+            $table->mediumText('item_description')->nullable();
         });
     }
 

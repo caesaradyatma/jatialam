@@ -21,3 +21,5 @@ Route::get('/','HomeController@index');
 Route::get('/inventorypage','InventorypageController@pages');
 
 Route::resource('inventory','InventoryController');
+
+Route::resource('purchasings','PurchasingsController');
