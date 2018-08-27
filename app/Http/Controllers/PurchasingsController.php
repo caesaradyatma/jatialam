@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Purchasing;
+use App\Item;
 
 class PurchasingsController extends Controller
 {
@@ -13,7 +14,9 @@ class PurchasingsController extends Controller
     }
 
     public function create(){
-        return view('Purchasing.create');
+        $items = Item::all();
+        
+        return view('Purchasing.create')->with('items',$items);
     }
 
     public function store(Request $request){
