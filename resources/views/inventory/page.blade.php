@@ -18,7 +18,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading"></div>
                         <div class="panel-body">
-                            <center><a href="#" class="btn btn-primary"><h4>Tambah Kategori Barang</h4></a> </center>
+                            <center><a href="/inventory/create" class="btn btn-primary"><h4>Tambah Kategori Barang</h4></a> </center>
                         </div>
                 </div>
             </div>
