@@ -4,44 +4,52 @@
 <h1>Procurement Form</h1>
 
 {!! Form::open(['action' => 'PurchasingsController@store','method' => 'POST']) !!}
-    <div class="form-group">
-      {{Form::label('item_name', 'Item Name')}}
-      {{Form::text('item_name','',['class'=>'form-control','placeholder'=>'Item Name','required'])}}
-    </div>
-    <div class="form-group">
-      {{Form::label('item_id', 'Item Name')}}
-      {{Form::select('item_id',[1=>'Barang 1',2=>'Barang 2', 3=>'Barang 3'],'',['class'=>'form-control'])}}
-    </div>
-    <div class="form-group">
-        {{Form::label('item_name', 'Nama Barang')}}
-            <select name="item_name" class="form-control">
-                @foreach ($items as $item)
-                    <option value="{{$item['Item']['id']}}">
-                      {{$item->item_name}}
-                    </option>
-                @endforeach
-            </select>
-    </div>
-    <div class="form-group">
-      {{Form::label('expected_amount', 'Expected Amount')}}
-      {{Form::number('expected_amount','',['class'=>'form-control','placeholder'=>'Expected Amount','required'])}}
-    </div>
-    <div class="form-group">
-      {{Form::label('real_amount', 'Real Amount')}}
-      {{Form::number('real_amount','',['class'=>'form-control','placeholder'=>'Real Amount','required'])}}
-    </div>
-    <div class="form-group">
-      {{Form::label('sender_pic', 'Sender PIC')}}
-      {{Form::text('sender_pic','',['class'=>'form-control','placeholder'=>'Sender PIC','required'])}}
-    </div>
-    <div class="form-group">
-      {{Form::label('arrival_date', 'Arrival Date')}}
-      {{Form::date('arrival_date','',['class'=>'form-control','placeholder'=>'Arrival Date','required'])}}
-    </div>
+    <table class="table table-striped" id="selectInput">
+        <tr>
+            <th colspan="2">Arrival Date</th>
+            <th colspan="2">Sender PIC</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="date" name="arrival_date" class="form-control" placeholder="Arrival Date" required>
+            </td>
+            <td colspan="2">
+                <input type="text" name="sender_pic" class="form-control" placeholder="Sender PIC" required>
+            </td>
+        <tr>
+            <th>Item Name</th>
+            <th>Expected Amount</th>
+            <th>Real Amount</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>
+                <select name="item_id[]" class="form-control">
+                    @foreach ($items as $item)
+                        <option value="{{$item->id}}">
+                        {{$item->item_name}}
+                        </option>
+                    @endforeach
+                </select>
+            </td>
+            <td>
+                <input type="number" name="expected_amount[]" class="form-control" placeholder="Expected Amount" required>
+            </td>
+            <td>
+                <input type="number" name="real_amount[]" class="form-control" placeholder="Real Amount" required>
+            </td>
+            <td>
+                {{--  <a href="#" class="delete btn btn-danger">Delete</a>  --}}
+            </td>
+        </tr>
+        
+    </table>
+
     {{Form::hidden('_method','POST')}}
     {{Form::submit('Submit',['class'=>'btn btn-primary form-control'])}}
+    
 {!! Form::close() !!}
-{{-- <button class="add_form_field">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button> --}}
+    <button class="add_form_field">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
 @endsection
 
 @section('scripts')
@@ -53,7 +61,7 @@
     // });
     $(document).ready(function() {
         var max_fields      = 10;
-        var wrapper         = $("#prod");
+        var wrapper         = $("#selectInput");
         var add_button      = $(".add_form_field");
 
         var x = 1;
@@ -61,8 +69,8 @@
             e.preventDefault();
             if(x < max_fields){
                 x++;
-                // $(wrapper).append('<div><input type="text" class="form-control" placeholder="Products" name="products[]"/><a href="#" class="delete">Delete</a></div>'); //add input box
-                $(wrapper).append('<tr><td><input type="text" class="form-control" placeholder="Products" name="products[]"/></td><td><input type="number" name="quantity[]" class="form-control"></td><td><a href="#" class="delete">Delete</a></td><tr>'); //add input box
+
+                $(wrapper).append('<tr><td><select name="item_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_name}}</option>@endforeach</select></td><td><input type="number" name="expected_amount[]" class="form-control" placeholder="Expected Amount" required></td><td><input type="number" name="real_amount[]" class="form-control" placeholder="Real Amount" required></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); //add input box
             }
             else
             {

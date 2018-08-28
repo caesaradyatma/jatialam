@@ -20,28 +20,32 @@ class PurchasingsController extends Controller
     }
 
     public function store(Request $request){
-    
-        $this->validate($request,[
-            'item_name' => 'required',
-            'expected_amount' => 'required',
-            'real_amount' => 'required',
-            'sender' => 'required',
-            'date' => 'date'
-        ]);
+        
+        
+        // $this->validate($request,[
+        //     'item_id[]' => 'required',
+        //     'expected_amount[]' => 'required',
+        //     'real_amount[]' => 'required',
+        //     'sender_pic' => 'required',
+        //     'arrival_date' => 'required'
+        // ]);
             
-        $ref_id = 0;
         $item_array = array();
-        $item_array = $request->input('item_name');
-
+        $expected_array = array();
+        $real_array = array();
+        $item_array = $request->input('item_id');
+        $expected_array = $request->input('expected_amount');
+        $real_array = $request->input('real_amount');
+        $ref_id = md5($request->input('arrival_date'));
 
         for($counter = 0;$counter < sizeof($item_array);$counter ++){
             $purchasing = new Purchasing;
-            $purchasing->item_name = $item_array[$counter];
-            $purchasing->expected_amount = $request->input('expected_amount');
-            $purchasing->real_amount = $request->input('real_amount');
-            $purchasing->sender = $request->input('sender');
-            $purchasing->date = $request->input('date');
-            $purchasing->ref_id = $ref_id;
+            $purchasing->item_id = $item_array[$counter];
+            $purchasing->expected_amount = $expected_array[$counter];
+            $purchasing->real_amount = $real_array[$counter];
+            $purchasing->sender_pic = $request->input('sender_pic');
+            $purchasing->arrival_date = $request->input('arrival_date');
+            $purchasing->reference_id = $ref_id;
             $purchasing->save();
         }
     
