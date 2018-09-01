@@ -36,8 +36,9 @@ class PurchasingsController extends Controller
         $item_array = $request->input('item_id');
         $expected_array = $request->input('expected_amount');
         $real_array = $request->input('real_amount');
-        $ref_id = md5($request->input('arrival_date'));
-
+        $time = time();
+        $ref_id = srand($time);
+        dd($ref_id);
         for($counter = 0;$counter < sizeof($item_array);$counter ++){
             $purchasing = new Purchasing;
             $purchasing->item_id = $item_array[$counter];
@@ -52,11 +53,14 @@ class PurchasingsController extends Controller
         return redirect('purchasings')->with('success','Data has been inputted');
     }
 
-    public function show($ref_id){
+    public function show($reference_id){
     
-        $purchasings = Purchasing::where('ref_id',$ref_id)->where('deleted_at',NULL)->get();
+        $purchasings = Purchasing::where('reference_id',$reference_id)->where('deleted_at',NULL)->get();
+        $dummy = Purchasing::where('reference_id',$reference_id)->where('deleted_at',NULL)->first();
+        $arrival_date = $dummy->arrival_date;
+        $sender_pic = $dummy->sender_pic;
         if($purchasings != NULL){
-            return view('Purchasing.show')->with('purchasings',$purchasings);
+            return view('Purchasing.show')->with('purchasings',$purchasings)->with('arrival_date',$arrival_date)->with('sender_pic',$sender_pic)->with('reference_id',$reference_id);
         }
         else{
             return redirect('purchasings')->with('error','Data not found');
@@ -111,9 +115,9 @@ class PurchasingsController extends Controller
         return redirect('purchasings')->with('success','Data has been inputted');
     }
 
-    public function destroy($ref_id){
-        $purchasings = Purchasing::where('ref_id',$ref_id)->get();
-        $date = ('Y-m-d');
+    public function destroy($reference_id){
+        $purchasings = Purchasing::where('reference_id',$reference_id)->get();
+        $date = date('Y-m-d H:i:s');
         foreach($purchasings as $purchasing){
             $purchasing->deleted_at = $date;
             $purchasing->save();

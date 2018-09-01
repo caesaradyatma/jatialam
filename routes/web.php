@@ -29,3 +29,5 @@ Route::post('/inventory/item','ItemController@store');
 Route::resource('inventory','InventoryController');
 
 Route::resource('purchasings','PurchasingsController');
+
+Route::resource('cuttings','CuttingStageController');

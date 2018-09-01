@@ -13,7 +13,7 @@
         <th>Arrival Date</th>
     @foreach($purchasings as $purchasing)
         <tr>
-            <td>{{$purchasing->reference_id}}</td>
+            <td><a href="purchasings/{{$purchasing->reference_id}}">{{$purchasing->reference_id}}</a></td>
             <td>{{$purchasing->item_id}}</td>
             <td>{{$purchasing->expected_amount}}</td>
             <td>{{$purchasing->real_amount}}</td>

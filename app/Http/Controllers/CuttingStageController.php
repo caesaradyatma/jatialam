@@ -9,15 +9,16 @@ use App\Item;
 class CuttingStageController extends Controller
 {
     public function index(){
-
+        $cuttings = CuttingStage::where('deleted_at',NULL)->paginate(10);
+        return view('CuttingStage.index');
     }
 
     public function create(){
-
+        return view('CuttingStage.create');
     }
 
     public function store(Request $request){
-
+        
     }
     
     public function show($id){
