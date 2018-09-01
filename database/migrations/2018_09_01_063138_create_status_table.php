@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCuttingStageTable extends Migration
+class CreateStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCuttingStageTable extends Migration
      */
     public function up()
     {
-        Schema::create('cutting_stages', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('item_id')->unsigned();
-            $table->integer('amount')->nullable();
-            $table->integer('status')->unsigned();
+            $table->string('name')->nullable();
+            $table->string('category')->nullable();
             $table->date('deleted_at')->nullable();
         });
     }
@@ -30,6 +29,6 @@ class CreateCuttingStageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cutting_stages');
+        Schema::dropIfExists('statuses');
     }
 }

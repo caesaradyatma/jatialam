@@ -16,6 +16,7 @@
             <td colspan="2">
                 <input type="text" name="sender_pic" class="form-control" placeholder="Sender PIC" required>
             </td>
+        </tr>
         <tr>
             <th>Item Name</th>
             <th>Expected Amount</th>
