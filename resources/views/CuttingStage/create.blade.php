@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Procurement Form</h1>
+<h1>Create New Cutting Process</h1>
 
 {!! Form::open(['action' => 'CuttingStageController@store','method' => 'POST']) !!}
     <table class="table table-striped" id="selectInput">        

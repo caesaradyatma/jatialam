@@ -14,10 +14,10 @@
             </tr>
             @foreach($cuttings as $cutting)
                 <tr>
-                    <td>$cutting->id</td>
-                    <td>$cutting->item_id</td>
-                    <td>$cutting->amount</td>
-                    <td>$cutting->status</td>
+                    <td><a href="cuttings/{{$cutting->reference_id}}">{{$cutting->reference_id}}</a></td>
+                    <td>{{$cutting->cutting_item->item_name}}</td>
+                    <td>{{$cutting->amount}}</td>
+                    <td>{{$cutting->cutting_status->name}}</td>
                 </tr>
             @endforeach
         </table>

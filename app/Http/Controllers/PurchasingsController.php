@@ -38,7 +38,7 @@ class PurchasingsController extends Controller
         $real_array = $request->input('real_amount');
         $time = time();
         $ref_id = srand($time);
-        dd($ref_id);
+        
         for($counter = 0;$counter < sizeof($item_array);$counter ++){
             $purchasing = new Purchasing;
             $purchasing->item_id = $item_array[$counter];
