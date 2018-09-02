@@ -17,7 +17,7 @@ class Item extends Model
      //public stamps
      public $timestamps = true;
 
-     public function inventory() {
-        return $this->hasOne(Inventory::class);
-  }
+     public function inventory(){
+      return $this->hasMany('App\inventory');
+ }
 }

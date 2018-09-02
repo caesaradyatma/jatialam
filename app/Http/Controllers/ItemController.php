@@ -12,7 +12,10 @@ use App\Item;
 class ItemController extends Controller
 {
     public function itemShow(){
-        return view('inventory.show');
+
+        $items = Inventory::all();
+        return view('inventory.item.show')->with('items',$items);
+       
     }
 
     public function store(Request $request) {
@@ -25,7 +28,7 @@ class ItemController extends Controller
         $items->item_description = $request->input('item_description');
 
         $items->save();
-        return redirect('/inventory')->with('success','Successfully adjusted');
+        return redirect('/inventory');
     }
 
     public function create()

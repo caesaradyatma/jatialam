@@ -15,4 +15,6 @@
         </div>
     <a href="#clients">Manufacturing</a>
     <a href="#contact">Delivery</a>
+    <a href="#contact">Assembly</a>
+    <a href="#contact">Item Retrieval</a>
 </div>

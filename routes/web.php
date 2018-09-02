@@ -24,6 +24,7 @@ Route::get('/inventory/item/create','ItemController@create');
 
 Route::post('/inventory/item','ItemController@store');
 
+Route::get('/inventory/{id}/item','ItemController@itemShow');
 
 
 Route::resource('inventory','InventoryController');
