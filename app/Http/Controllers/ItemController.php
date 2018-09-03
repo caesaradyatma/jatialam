@@ -11,21 +11,25 @@ use App\Item;
 
 class ItemController extends Controller
 {
-    public function itemShow(){
-        return view('inventory.show');
+    public function itemShow($id){
+
+        $items = Inventory::find($id)->item;
+
+        return view('inventory.item.show')->with('items',$items);
+       
     }
 
     public function store(Request $request) {
         $items = new Item;
         $items->item_name = $request->input('item_name');
         $items->item_measurement = $request->input('item_measurement'); 
-        $items->cat_id = $request->input('cat_id');
+        $items->inventory_id = $request->input('inventory_id');
         $items->item_qty = $request->input('item_qty');
         $items->item_assembly = $request->input('item_assembly');
         $items->item_description = $request->input('item_description');
 
         $items->save();
-        return redirect('/inventory')->with('success','Successfully adjusted');
+        return redirect('/inventory');
     }
 
     public function create()

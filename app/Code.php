@@ -4,8 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Code extends Model
 {
+    public function scopeSearch($query, $test){
+        return $query->where('item_assembly', 'like', '%' . $test . '%');
+        
+      
+     }
+
      //table name
      protected $table = 'items';
 
@@ -14,8 +20,4 @@ class Item extends Model
  
      //public stamps
      public $timestamps = true;
-
-     public function inventory(){
-      return $this->belongsTo(Inventory::class);
- }
 }

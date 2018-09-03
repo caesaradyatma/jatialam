@@ -18,9 +18,9 @@
         </div>
 
         <div class="form-group" >
-            {{Form::label('cat_id','Kategori Barang')}}
+            {{Form::label('inventory_id','Kategori Barang')}}
             
-                <select name="cat_id" class="form-control">
+                <select name="inventory_id" class="form-control">
                     @foreach($items as $item)
                         @if($item->item_delete == null)
                             <option value="{{$item->id}}">{{ $item->cat_name }}</option> 

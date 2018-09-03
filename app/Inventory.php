@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inventory extends Model
 {
+    public function scopeSearch($query, $test){
+        return $query->where('cat_name', 'like', '%' . $test . '%');
+        
+      
+     }
+
      //table name
      protected $table = 'inventorylists';
 
@@ -14,4 +20,9 @@ class Inventory extends Model
  
      //public stamps
      public $timestamps = true;
+
+     public function item()
+     {
+         return $this->hasMany(Item::class);
+     }
 }

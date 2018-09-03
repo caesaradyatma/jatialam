@@ -33,4 +33,6 @@
             </div>
         </div>
     <a href="#contact">Delivery</a>
+    <a href="#contact">Assembly</a>
+    <a href="/datatracking">Item Retrieval</a>
 </div>
