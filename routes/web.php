@@ -24,7 +24,15 @@ Route::get('/inventory/item/create','ItemController@create');
 
 Route::post('/inventory/item','ItemController@store');
 
-Route::get('/inventory/{id}/item','ItemController@itemShow');
+Route::get('/inventory/{id}','ItemController@itemShow');
+
+Route::get('/datatracking','CodeController@index');
+
+Route::get('/datatracking/item', [
+    'uses' => 'CodeController@dataShow',
+   'as' => 'datatracking.show'
+    
+ ]);
 
 
 Route::resource('inventory','InventoryController');

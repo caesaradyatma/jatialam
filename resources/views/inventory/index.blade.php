@@ -16,7 +16,7 @@
             <div class="form-group pull-right">
                 <button class="btn btn-success" type="submit">Search</button>
             </div>
-</form>    
+    </form>    
 <a href = "/inventory/item/create" class="btn btn-primary" style="margin-top:10px;margin-bottom:15px;">Tambah Ukuran Barang</a> <br>
 
 @if(count($lists) > 0)
@@ -36,7 +36,7 @@
     <td>{{$list->cat_code}}</td>
     <td>{{$list->cat_measurement}}</td>
     <td>{{$list->cat_measurement}}</td>
-    <td><a href="/inventory/{{$list->id}}/item" class="btn btn-default">Details</a></td>
+    <td><a href="/inventory/{{$list->id}}" class="btn btn-default">Details</a></td>
 </tr>
 
 @endforeach

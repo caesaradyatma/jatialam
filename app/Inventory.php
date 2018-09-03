@@ -23,6 +23,6 @@ class Inventory extends Model
 
      public function item()
      {
-         return $this->belongsTo('App\Item','cat_id');
+         return $this->hasMany(Item::class);
      }
 }

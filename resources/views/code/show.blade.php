@@ -1,8 +1,8 @@
-@extends ('layouts.app')
+@extends('layouts.app')
 
-@section ('content')
+@section('content')
 
-@if(count($lists) > 0)
+@if(count($lists) != 0)
 <table class="table table-hover">
     <tr class="success">
         <th>Nama Barang</th>
@@ -12,22 +12,19 @@
         <th>Details</th>
     </tr>
 
- @foreach($lists as $list)     
+@foreach ($lists as $list)     
 <tr>
 
-    <td>{{$list->cat_name}}</td>
-    <td>{{$list->cat_code}}</td>
-    <td>{{$list->cat_measurement}}</td>
-    <td>{{$list->cat_measurement}}</td>
-    <td><a href="/inventory/{{$list->id}}" class="btn btn-default">Details</a></td>
+    <td>{{$list->item_name}}</td>
+    <td>{{$list->item_measurement}}</td>
+    <td>{{$list->item_qty}}</td>
+    <td>{{$list->item_assembly}}</td>
+    <td>{{$list->item_description}}</td>
+   
 </tr>
-
 @endforeach
-
-
-
 </table>
-{{$lists->links()}}
+
 @else
 <table class="table table-hover">
     <tr class="success">
@@ -44,6 +41,5 @@
 </table>
 
 @endif
-
 
 @endsection

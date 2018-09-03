@@ -11,9 +11,10 @@ use App\Item;
 
 class ItemController extends Controller
 {
-    public function itemShow(){
+    public function itemShow($id){
 
-        $items = Inventory::all();
+        $items = Inventory::find($id)->item;
+
         return view('inventory.item.show')->with('items',$items);
        
     }
@@ -22,7 +23,7 @@ class ItemController extends Controller
         $items = new Item;
         $items->item_name = $request->input('item_name');
         $items->item_measurement = $request->input('item_measurement'); 
-        $items->cat_id = $request->input('cat_id');
+        $items->inventory_id = $request->input('inventory_id');
         $items->item_qty = $request->input('item_qty');
         $items->item_assembly = $request->input('item_assembly');
         $items->item_description = $request->input('item_description');
