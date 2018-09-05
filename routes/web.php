@@ -40,3 +40,7 @@ Route::resource('inventory','InventoryController');
 Route::resource('purchasings','PurchasingsController');
 
 Route::resource('cuttings','CuttingStageController');
+
+Route::post('cuttings/{id}','CuttingStageController@update_status');
+
+Route::resource('ovens','OvenStageController');

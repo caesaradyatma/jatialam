@@ -6,41 +6,23 @@
 {!! Form::open(['action' => 'PurchasingsController@store','method' => 'POST']) !!}
     <table class="table table-striped" id="selectInput">
         <tr>
-            <th colspan="2">Arrival Date</th>
-            <th colspan="2">Sender PIC</th>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="date" name="arrival_date" class="form-control" placeholder="Arrival Date" required>
-            </td>
-            <td colspan="2">
-                <input type="text" name="sender_pic" class="form-control" placeholder="Sender PIC" required>
-            </td>
-        </tr>
-        <tr>
-            <th>Item Name</th>
+            <th>Arrival Date</th>
+            <th>Sender PIC</th>
             <th>Expected Amount</th>
             <th>Real Amount</th>
-            <th>Action</th>
         </tr>
         <tr>
             <td>
-                <select name="item_id[]" class="form-control">
-                    @foreach ($items as $item)
-                        <option value="{{$item->id}}">
-                        {{$item->item_name}}
-                        </option>
-                    @endforeach
-                </select>
+                <input type="date" name="arrival_date" class="form-control" placeholder="Arrival Date" required>
             </td>
             <td>
-                <input type="number" name="expected_amount[]" class="form-control" placeholder="Expected Amount" required>
+                <input type="text" name="sender_pic" class="form-control" placeholder="Sender PIC" required>
             </td>
             <td>
-                <input type="number" name="real_amount[]" class="form-control" placeholder="Real Amount" required>
+                <input type="number" name="expected_amount" class="form-control" placeholder="Expected Amount" required>
             </td>
             <td>
-                {{--  <a href="#" class="delete btn btn-danger">Delete</a>  --}}
+                <input type="number" name="real_amount" class="form-control" placeholder="Real Amount" required>
             </td>
         </tr>
         
@@ -50,7 +32,7 @@
     {{Form::submit('Submit',['class'=>'btn btn-primary form-control'])}}
     
 {!! Form::close() !!}
-    <button class="add_form_field">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
+    {{-- <button class="add_form_field">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button> --}}
 @endsection
 
 @section('scripts')

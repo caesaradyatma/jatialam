@@ -22,34 +22,24 @@ class PurchasingsController extends Controller
     public function store(Request $request){
         
         
-        // $this->validate($request,[
-        //     'item_id[]' => 'required',
-        //     'expected_amount[]' => 'required',
-        //     'real_amount[]' => 'required',
-        //     'sender_pic' => 'required',
-        //     'arrival_date' => 'required'
-        // ]);
-            
-        $item_array = array();
-        $expected_array = array();
-        $real_array = array();
-        $item_array = $request->input('item_id');
-        $expected_array = $request->input('expected_amount');
-        $real_array = $request->input('real_amount');
-        $time = time();
-        $ref_id = srand($time);
+        $this->validate($request,[
+            'expected_amount' => 'required',
+            'real_amount' => 'required',
+            'sender_pic' => 'required',
+            'arrival_date' => 'required'
+        ]);
+
+        //generate random number
+        $ref_id = uniqid();
         
-        for($counter = 0;$counter < sizeof($item_array);$counter ++){
-            $purchasing = new Purchasing;
-            $purchasing->item_id = $item_array[$counter];
-            $purchasing->expected_amount = $expected_array[$counter];
-            $purchasing->real_amount = $real_array[$counter];
-            $purchasing->sender_pic = $request->input('sender_pic');
-            $purchasing->arrival_date = $request->input('arrival_date');
-            $purchasing->reference_id = $ref_id;
-            $purchasing->save();
-        }
-    
+        $purchasing = new Purchasing;
+        $purchasing->expected_amount = $request->input('expected_amount');
+        $purchasing->real_amount = $request->input('real_amount');
+        $purchasing->sender_pic = $request->input('sender_pic');
+        $purchasing->arrival_date = $request->input('arrival_date');
+        $purchasing->reference_id = $ref_id;
+        $purchasing->save();
+        
         return redirect('purchasings')->with('success','Data has been inputted');
     }
 

@@ -16,6 +16,10 @@ class CreateOvenStagesTable extends Migration
         Schema::create('oven_stages', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->integer('item_id')->unsigned();
+            $table->integer('amount')->nullable();
+            $table->integer('status')->unsigned();
+            $table->date('deleted_at')->nullable();
         });
     }
 

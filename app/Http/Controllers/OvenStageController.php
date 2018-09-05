@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Item;
 use App\Status;
+use App\OvenStage;
+use App\CuttingStage;
 
 class OvenStageController extends Controller
 {
@@ -13,10 +15,11 @@ class OvenStageController extends Controller
         return view('OvenStage.index')->with('ovens',$ovens);
     }
 
-    public function create($reference_id){
+    public function create(){
+        $cuttings = CuttingStage::where('deleted_at',NULL)->where('status',3)->get();
         $items = Item::all();
         $status = Status::all();
-        return view('OvenStage.create')->with('items',$items)->with('status',$status);
+        return view('OvenStage.create')->with('items',$items)->with('status',$status)->with('cuttings',$cuttings);
     }
 
     public function store(Request $request){
