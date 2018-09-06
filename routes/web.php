@@ -20,13 +20,15 @@ Route::get('/','HomeController@index');
 
 Route::get('/inventorypage','InventorypageController@pages');
 
-Route::get('/inventory/item/create','ItemController@create');
+Route::get('/inventory/item/create','ItemController@createe');
 
 Route::post('/inventory/item','ItemController@store');
 
 Route::get('/inventory/{id}','ItemController@itemShow');
 
 Route::get('/datatracking','CodeController@index');
+
+Route::get('/inventori/create','InventorypageController@create');
 
 Route::get('/datatracking/item', [
     'uses' => 'CodeController@dataShow',
