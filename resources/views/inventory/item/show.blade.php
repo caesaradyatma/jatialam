@@ -10,7 +10,7 @@
         <th>Nama Barang</th>
         <th>Tipe Barang</th>
         <th>Ukuran</th>
-        <th>Status</th>
+        <th>Kode Pembentukan</th>
         <th>Details</th>
     </tr>
 
@@ -35,9 +35,9 @@
     <tr class="success">
         <th>Nama Barang</th>
         <th>Tipe Barang</th>
-        <th>Kode Barang</th>
-        <th>Stok Barang</th>
-        <th>Reorder Level</th>
+        <th>Ukuran</th>
+        <th>Status</th>
+        <th>Details</th>
        
     </tr>
 <tr>
