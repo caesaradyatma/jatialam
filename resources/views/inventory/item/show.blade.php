@@ -2,33 +2,84 @@
 
 @section ('content')
 
+    
+
+</table>
 
 
 @if(count($items) > 0)
-<table class="table table-hover">
-    <tr class="success">
-        <th>Nama Barang</th>
-        <th>Tipe Barang</th>
-        <th>Ukuran</th>
-        <th>Kode Pembentukan</th>
-        <th>Details</th>
-    </tr>
+<div class="container-fluid">
+    <div class="row bg-success">
+      <div class="col-sm-2">
+        <h3>Nama Barang</u></h3>
+      </div>
+      <div class="col-sm-2">
+        <h3>Ukuran</h3>
+      </div>
+      <div class="col-sm-2">
+        <h3>Kode Pintu</h3>
+      </div>
+      <div class="col-sm-2 other">
+        <h3>Total Dibutuhkan</h3>
+      </div>
+      <div class="col-sm-2 other">
+        <h3>Aksi</h3>
+        <div class="row">
+            <div class="col-sm-4 other">
+              <h4>Pending</h4>
+            </div>
+            <div class="col-sm-4 other2">
+              <h4>On Process</h4>
+            </div>
+            <div class="col-sm-4 other2">
+                <h4>Ready</h4>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-2 other">
+        <h3>Keterangan</h3>
+      </div>
+    </div>
+  </div>
 
- @foreach($items as $list)     
-<tr>
 
-    <td>{{$list->item_name}}</td>
-    <td>{{$list->item_qty}}</td>
-    <td>{{$list->item_measurement}}</td>
-    <td>{{$list->item_assembly}}</td>
-    <td>{{$list->item_description}}</td>
-</tr>
+@foreach($items as $list)     
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+        <h3>{{$list->item_name}}</h3>
+      </div>
+      <div class="col-sm-2">
+        <h3>{{$list->item_measurement}}</h3>
+      </div>
+      <div class="col-sm-2">
+        <h3>{{$list->item_assembly}}</h3>
+      </div>
+      <div class="col-sm-2 other">
+        <h3>{{$list->item_qty}}</h3>
+      </div>
+      <div class="col-sm-2 other">
+        <div class="row">
+            <div class="col-sm-4 other">
+              <h4>1</h4>
+            </div>
+            <div class="col-sm-4 other2">
+              <h4>2</h4>
+            </div>
+            <div class="col-sm-4 other2">
+                <h4>3</h4>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-2 other">
+        <h3>Keterangan</h3>
+      </div>
+    </div>
+  </div>
 
 @endforeach
 
-
-
-</table>
 
 @else
 <table class="table table-hover">
