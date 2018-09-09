@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\CuttingStage;
 use App\Item;
 use App\Status;
+use App\Inventory;
 
 class CuttingStageController extends Controller
 {
@@ -17,7 +18,8 @@ class CuttingStageController extends Controller
     public function create(){
         $items = Item::all();
         $status = Status::all();
-        return view('CuttingStage.create')->with('items',$items)->with('status',$status);
+        $inventories = Inventory::all();
+        return view('CuttingStage.create')->with('items',$items)->with('status',$status)->with('inventories',$inventories);
     }
 
     public function store(Request $request){

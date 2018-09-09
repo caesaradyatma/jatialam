@@ -21,6 +21,17 @@ class OvenStageController extends Controller
         $status = Status::all();
         return view('OvenStage.create')->with('items',$items)->with('status',$status)->with('cuttings',$cuttings);
     }
+    
+    public function precreate(){
+        $cuttings = CuttingStage::where('deleted_at',NULL)->where('status',3)->get();
+        $items = Item::all();
+        $status = Status::all();
+        return view('OvenStage.precreate')->with('items',$items)->with('status',$status)->with('cuttings',$cuttings);
+    }
+
+    public function get_ref(){
+        
+    }
 
     public function store(Request $request){
         

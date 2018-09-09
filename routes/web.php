@@ -43,4 +43,12 @@ Route::resource('cuttings','CuttingStageController');
 
 Route::post('cuttings/{id}','CuttingStageController@update_status');
 
-Route::resource('ovens','OvenStageController');
+Route::get('/ovens','OvenStageController@index');
+
+Route::get('/ovens/get_ref','OvenStageController@precreate');
+
+Route::post('/ovens/get_ref','OvenStageController@get_ref');
+
+Route::get('/ovens/create','OvenStageController@create');
+
+Route::post('/ovens/create','OvenStageController@store');

@@ -3,6 +3,9 @@
 @section('content')
 
     <h1>Create New Oven Process</h1>
+    
+    {{--  Add Item Button  --}}
+    <button class="add_form_field btn btn-primary">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
 
     {!! Form::open(['action' => 'OvenStageController@store','method' => 'POST']) !!}
         <table class="table table-striped" id="selectInput">
@@ -62,7 +65,7 @@
         {{Form::hidden('_method','POST')}}
         {{Form::submit('Submit',['class'=>'btn btn-primary form-control'])}}
     {!! Form::close() !!}
-    <button class="add_form_field">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
+    
 @endsection
 
 @section('scripts')
