@@ -36,6 +36,8 @@ Route::get('/datatracking/item', [
     
  ]);
 
+Route::get('/assembly','AssemblyController@index');
+
 
 Route::resource('inventory','InventoryController');
 
