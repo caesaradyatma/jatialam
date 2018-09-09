@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 use App\Inventory;
+use App\Item;
 
 class InventoryController extends Controller
 {
@@ -19,8 +20,9 @@ class InventoryController extends Controller
     {
         $test = $request->input('test');
         $lists = Inventory::where('cat_delete', NULL)->orderBy('created_at','desc')->search($test)->paginate(10);
-       
-        return view ('inventory.index')->with('lists', $lists);
+  
+
+        return view ('inventory.index')->with(compact('lists','items'));
         
     }
 

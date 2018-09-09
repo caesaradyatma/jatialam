@@ -32,10 +32,17 @@ class ItemController extends Controller
         return redirect('/inventory');
     }
 
-    public function create()
+    public function createe()
     {
-        $items = Inventory::all();
-        return View('inventory.item.create')->with('items',$items); 
+        $lists = Inventory::count();
+
+        if ($lists === 0) {
+           return view('inventory.create');
+        } else {
+            $items = Inventory::all();
+            return View('inventory.item.create')->with('items',$items); 
+        }
+       
        
     }
 }

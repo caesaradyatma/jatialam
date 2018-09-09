@@ -15,13 +15,17 @@ class CodeController extends Controller
 
     public function dataShow(Request $request) {
     
-        $this->validate($request,[
-            'item_assembly' => 'required', 
-        ]);
 
     $test = $request->input('test');
-    $lists = Code::where('item_assembly', 'LIKE', '%'.$test.'%')->get();
-   
-    return view ('code.show')->with('lists', $lists);
+    if($test != NULL) {
+        $lists = Code::where('item_assembly', 'LIKE', '%'.$test.'%')->get();
+        return view ('code.show')->with('lists', $lists);
+    } else {
+        $test = 0;
+        $lists = Code::where('item_assembly', 'LIKE', '%'.$test.'%')->get();
+        return view ('code.show')->with('lists', $lists);
+    }
+
+  
     }
 }
