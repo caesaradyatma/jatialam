@@ -1,23 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Create New Cutting Process</h1>
+<h1>Buat Proses Pemotongan</h1>
 
 {!! Form::open(['action' => 'CuttingStageController@store','method' => 'POST']) !!}
     <table class="table table-striped" id="selectInput">        
         <tr>
-            <th>Item Name</th>
-            <th>Amount</th>
-            <th>End Product</th>
+            <th>ID Balok</th>
+            <th>Jumlah</th>
+            <th>Barang Jadi</th>
+            <th>Dimensi</th>
             <th>Status</th>
             <th>Action</th>
         </tr>
         <tr>
             <td>
                 <select name="item_id[]" class="form-control">
-                    @foreach ($items as $item)
-                        <option value="{{$item->id}}">
-                        {{$item->item_name}}
+                    @foreach ($baloks as $balok)
+                        <option value="{{$balok->id}}">
+                        {{$balok->code}}
                         </option>
                     @endforeach
                 </select>
@@ -27,12 +28,27 @@
             </td>
             <td>
                 <select name="endproduct_id[]" class="form-control">
-                    @foreach ($items as $item)
+                    {{--  @foreach ($items as $item)
                         <option value="{{$item->id}}">
-                        {{$item->item_name}}
+                        {{$item->inventory->cat_name}} {{$item->inventory->cat_measurement}}
+                        </option>
+                    @endforeach  --}}
+                    @foreach ($inventories as $inventory)
+                        <option value="{{$inventory->id}}">
+                        {{$inventory->cat_name}} {{$inventory->cat_measurement}}
                         </option>
                     @endforeach
                 </select>
+            </td>
+            <td>
+                {{--  <select name="dimension[]" class="form-control">
+                    @foreach ($items as $item)
+                        <option value="{{$item->id}}">
+                        {{$item->item_measurement}}
+                        </option>
+                    @endforeach
+                </select>  --}}
+                <input type="text" name="dimension[]" class="form-control">
             </td>
             <td>
                 <select name="status[]" class="form-control">
@@ -75,7 +91,8 @@
             if(x < max_fields){
                 x++;
 
-                $(wrapper).append('<tr><td><select name="item_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_name}}</option>@endforeach</select></td><td><input type="number" name="amount[]" class="form-control" placeholder="Amount" required></td><td><select name="endproduct_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_name}}</option>@endforeach</select></td><td><select name="status[]" class="form-control">@foreach($status as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); //add input box
+                //$(wrapper).append('<tr><td><select name="item_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_name}}</option>@endforeach</select></td><td><input type="number" name="amount[]" class="form-control" placeholder="Amount" required></td><td><select name="endproduct_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_name}}</option>@endforeach</select></td><td><select name="dimension[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_measurement}}</option>@endforeach</select></td><td><select name="status[]" class="form-control">@foreach($status as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); 
+                $(wrapper).append('<tr><td><select name="item_id[]" class="form-control">@foreach($baloks as $balok)<option value="{{$balok->id}}">{{$balok->code}}</option>@endforeach</select></td><td><input type="number" name="amount[]" class="form-control" placeholder="Amount" required></td><td><select name="endproduct_id[]" class="form-control">@foreach($inventories as $inventory)<option value="{{$inventory->id}}">{{$inventory->cat_name}} {{$inventory->cat_measurement}}</option>@endforeach</select></td><td><input type="text" name="dimension[]" class="form-control"></td><td><select name="status[]" class="form-control">@foreach($status as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); 
             }
             else
             {

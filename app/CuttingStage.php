@@ -10,11 +10,16 @@ class CuttingStage extends Model
 
     public function cutting_item()
     {
-        return $this->belongsTo('App\Item','item_id');
+        return $this->belongsTo('App\Balok','item_id');
     }
 
     public function cutting_status()
     {
         return $this->belongsTo('App\Status','status');
+    }
+
+    public function endproduct()
+    {
+        return $this->belongsTo('App\Inventory','endproduct_id');
     }
 }

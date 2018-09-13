@@ -51,8 +51,8 @@ Route::get('/ovens','OvenStageController@index');
 
 Route::get('/ovens/get_ref','OvenStageController@precreate');
 
-Route::post('/ovens/get_ref','OvenStageController@get_ref');
+Route::post('/ovens/get_ref','OvenStageController@create');
 
-Route::get('/ovens/create','OvenStageController@create');
+// Route::get('/ovens/create','OvenStageController@create');
 
 Route::post('/ovens/create','OvenStageController@store');

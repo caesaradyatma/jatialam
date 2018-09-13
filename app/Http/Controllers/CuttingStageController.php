@@ -7,19 +7,21 @@ use App\CuttingStage;
 use App\Item;
 use App\Status;
 use App\Inventory;
+use App\Balok;
 
 class CuttingStageController extends Controller
 {
     public function index(){
-        $cuttings = CuttingStage::where('deleted_at',NULL)->paginate(10);
+        $cuttings = CuttingStage::where('deleted_at',NULL)->orderBy('status','desc')->paginate(10);
         return view('CuttingStage.index')->with('cuttings',$cuttings);
     }
 
     public function create(){
         $items = Item::all();
+        $baloks = Balok::all();
         $status = Status::all();
         $inventories = Inventory::all();
-        return view('CuttingStage.create')->with('items',$items)->with('status',$status)->with('inventories',$inventories);
+        return view('CuttingStage.create')->with('items',$items)->with('status',$status)->with('inventories',$inventories)->with('baloks',$baloks);
     }
 
     public function store(Request $request){
@@ -28,11 +30,13 @@ class CuttingStageController extends Controller
         $amount_array = array();
         $status_array = array();
         $endproduct_array = array();
+        $dimension_array = array();
 
         $item_array = $request->input('item_id');
         $amount_array = $request->input('amount');
         $status_array = $request->input('status');
         $endproduct_array = $request->input('endproduct_id');
+        $dimension_array = $request->input('dimension');
         
         $ref_id = uniqid();
 
@@ -42,6 +46,7 @@ class CuttingStageController extends Controller
             $cutting->amount = $amount_array[$counter];
             $cutting->endproduct_id = $endproduct_array[$counter];
             $cutting->status = $status_array[$counter];
+            $cutting->dimension = $dimension_array[$counter];
             $cutting->reference_id = $ref_id;
             $cutting->save();
         }

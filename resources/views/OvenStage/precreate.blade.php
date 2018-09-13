@@ -27,8 +27,8 @@
             </div>
         </div>
     </div>
-
-    {!! Form::open(['action' => 'OvenStageController@get_ref','method' => 'POST']) !!}
+    <h1>Check Reference</h1>
+    {!! Form::open(['action' => 'OvenStageController@create','method' => 'POST']) !!}
         <table class="table table-striped">
             <tr>
                 <th colspan="2">Reference ID</th>

@@ -15,11 +15,15 @@ class OvenStageController extends Controller
         return view('OvenStage.index')->with('ovens',$ovens);
     }
 
-    public function create(){
-        $cuttings = CuttingStage::where('deleted_at',NULL)->where('status',3)->get();
-        $items = Item::all();
+    public function create(Request $request){
+        // $cuttings = CuttingStage::where('deleted_at',NULL)->where('status',3)->get();
+        // $items = Item::all();
         $status = Status::all();
-        return view('OvenStage.create')->with('items',$items)->with('status',$status)->with('cuttings',$cuttings);
+        // return view('OvenStage.create')->with('items',$items)->with('status',$status)->with('cuttings',$cuttings);
+
+        $reference_id = $request->input('reference_id');
+        $cuttings = CuttingStage::where('reference_id',$reference_id)->where('deleted_at',NULL)->get();
+        return view('OvenStage.create')->with('cuttings',$cuttings)->with('status',$status)->with('reference_id',$reference_id);
     }
     
     public function precreate(){
@@ -29,8 +33,10 @@ class OvenStageController extends Controller
         return view('OvenStage.precreate')->with('items',$items)->with('status',$status)->with('cuttings',$cuttings);
     }
 
-    public function get_ref(){
-        
+    public function get_ref(Request $request){
+        $reference_id = $request->input('reference_id');
+        $cuttings = CuttingStage::where('reference_id',$reference_id)->where('deleted_at',NULL)->get();
+        return view('OvenStage.create')->with('cuttings',$cuttings);
     }
 
     public function store(Request $request){
@@ -41,7 +47,7 @@ class OvenStageController extends Controller
 
         $item_array = $request->input('item_id');
         $amount_array = $request->input('amount');
-        $status_array = $request->input('status');
+        $status_array = $request->input('status'); 
         $time = time();
         $ref_id = srand($time);
 

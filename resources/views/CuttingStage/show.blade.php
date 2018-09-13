@@ -1,27 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Cutting Stage Details</h1>
+    <h1>Detail Data Pemotongan</h1>
     <table class="table">
         <tr>
-            <th>Reference ID</th>
+            <th>Ref ID</th>
             <td>{{$reference_id}}</td>
         </tr>
     </table>
 
     <table class="table table-striped">
         <tr>
-            <th>Item Name</th>
-            <th>Amount</th>
-            <th>End Item</th>
+            <th>ID Balok</th>
+            <th>Jumlah</th>
+            <th>Barang Akhir</th>
+            <th>Dimensi</th>
             <th>Status</th>
             <th colspan="2">Update Status</th>
         </tr>
         @foreach($cuttings as $cutting)
             <tr>
-                <td>{{$cutting->cutting_item->item_name}}</td>
+                <td>{{$cutting->cutting_item->code}}</td>
                 <td>{{$cutting->amount}}</td>
-                <td>{{$cutting->endproduct_id}}</td>
+                <td>{{$cutting->endproduct->cat_name}} {{$cutting->endproduct->cat_measurement}}</td>
+                <td>{{$cutting->dimension}}</td>
                 <td>{{$cutting->cutting_status->name}}</td>
                 <td>
                     {!! Form::open(['action' => ['CuttingStageController@update_status',$reference_id],'method' => 'POST']) !!}

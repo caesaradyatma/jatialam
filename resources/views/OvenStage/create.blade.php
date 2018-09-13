@@ -13,40 +13,24 @@
                 <th>Reference ID</th>
                 <th>Item Name</th>
                 <th>Amount</th>
-                <th>End Product</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
             <tr>
                 <td>
-                    <select name="reference_id[]" class="form-control">
-                        @foreach ($cuttings as $cutting)
-                            <option value="{{$cutting->reference_id}}">
-                            {{$cutting->reference_id}}
-                            </option>
-                        @endforeach
-                    </select>
+                    {{$reference_id}}
                 </td>
                 <td>
-                    <select name="item_id[]" class="form-control">
-                        @foreach ($items as $item)
-                            <option value="{{$item->id}}">
-                            {{$item->item_name}}
+                    <select name="id[]" class="form-control">
+                        @foreach ($cuttings as $cutting)
+                            <option value="{{$cutting->id}}">
+                            {{$cutting->endproduct->cat_name}} {{$cutting->endproduct->cat_measurement}}
                             </option>
                         @endforeach
                     </select>
                 </td>
                 <td>
                     <input type="number" name="amount[]" class="form-control" placeholder="Amount" required>
-                </td>
-                <td>
-                    <select name="endproduct_id[]" class="form-control">
-                        @foreach ($items as $item)
-                            <option value="{{$item->id}}">
-                            {{$item->item_name}}
-                            </option>
-                        @endforeach
-                    </select>
                 </td>
                 <td>
                     <select name="status[]" class="form-control">
@@ -86,7 +70,7 @@
             if(x < max_fields){
                 x++;
 
-                $(wrapper).append('<tr><td><select name="reference_id[]" class="form-control">@foreach($cuttings as $cutting)<option value="{{$cutting->reference_id}}">{{$cutting->reference_id}}</option>@endforeach</select></td><td><select name="item_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_name}}</option>@endforeach</select></td><td><input type="number" name="amount[]" class="form-control" placeholder="Amount" required></td><td><select name="endproduct_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_name}}</option>@endforeach</select></td><td><select name="status[]" class="form-control">@foreach($status as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); //add input box
+                $(wrapper).append('<tr><td></td><td><input type="number" name="amount[]" class="form-control" placeholder="Amount" required></td><td></td><td><select name="status[]" class="form-control">@foreach($status as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); //add input box
             }
             else
             {
