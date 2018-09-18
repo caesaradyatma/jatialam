@@ -18,9 +18,8 @@ class OvenStageController extends Controller
     public function create(Request $request){
         // $cuttings = CuttingStage::where('deleted_at',NULL)->where('status',3)->get();
         // $items = Item::all();
-        $status = Status::all();
+        $status = Status::where('category','oven')->get();
         // return view('OvenStage.create')->with('items',$items)->with('status',$status)->with('cuttings',$cuttings);
-
         $reference_id = $request->input('reference_id');
         $cuttings = CuttingStage::where('reference_id',$reference_id)->where('deleted_at',NULL)->get();
         return view('OvenStage.create')->with('cuttings',$cuttings)->with('status',$status)->with('reference_id',$reference_id);
@@ -42,18 +41,18 @@ class OvenStageController extends Controller
     public function store(Request $request){
         
         $item_array = array();
-        $amount_array = array();
         $status_array = array();
+        $amount_array = array();
 
         $item_array = $request->input('item_id');
         $amount_array = $request->input('amount');
         $status_array = $request->input('status'); 
-        $time = time();
-        $ref_id = srand($time);
+        $ref_id = $request->input('reference_id');
 
         for($counter = 0; $counter < sizeof($item_array);$counter++){
             $oven = new OvenStage;
-            $oven->item_id = $item_array[$counter];
+            $oven->item_id = $item_array[$counter];;
+            $oven->endproduct_id = $item_array[$counter];
             $oven->amount = $amount_array[$counter];
             $oven->status = $status_array[$counter];
             $oven->reference_id = $ref_id;

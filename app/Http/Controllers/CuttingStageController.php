@@ -19,7 +19,7 @@ class CuttingStageController extends Controller
     public function create(){
         $items = Item::all();
         $baloks = Balok::all();
-        $status = Status::all();
+        $status = Status::where('category','cutting')->get();
         $inventories = Inventory::all();
         return view('CuttingStage.create')->with('items',$items)->with('status',$status)->with('inventories',$inventories)->with('baloks',$baloks);
     }
@@ -58,7 +58,7 @@ class CuttingStageController extends Controller
     public function show($reference_id){
 
         $cuttings = CuttingStage::where('reference_id',$reference_id)->where('deleted_at',NULL)->get();
-        $status = Status::where('deleted_at',NULL)->get();
+        $status = Status::where('deleted_at',NULL)->where('category','cutting')->get();
         if($cuttings != NULL){
             return view('CuttingStage.show')->with('cuttings',$cuttings)->with('reference_id',$reference_id)->with('status',$status);
         }

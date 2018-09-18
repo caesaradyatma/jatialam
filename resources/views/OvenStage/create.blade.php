@@ -2,21 +2,21 @@
 
 @section('content')
 
-    <h1>Create New Oven Process</h1>
-    
+    <h1>Buat Proses Oven Baru</h1>
+    <hr>
     {{--  Add Item Button  --}}
-    <button class="add_form_field btn btn-primary">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
+    {{--  <button class="add_form_field btn btn-primary">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>  --}}
 
     {!! Form::open(['action' => 'OvenStageController@store','method' => 'POST']) !!}
         <table class="table table-striped" id="selectInput">
             <tr>
                 <th>Reference ID</th>
-                <th>Item Name</th>
-                <th>Amount</th>
+                <th>Nama Barang</th>
+                <th>Dimensi</th>
+                <th>Jumlah</th>
                 <th>Status</th>
-                <th>Action</th>
             </tr>
-            <tr>
+            {{--  <tr>
                 <td>
                     {{$reference_id}}
                 </td>
@@ -30,6 +30,9 @@
                     </select>
                 </td>
                 <td>
+                    <input type="string" name="dimension[]" class="form-control" value={{$cutting->dimension}}>
+                </td>
+                <td>
                     <input type="number" name="amount[]" class="form-control" placeholder="Amount" required>
                 </td>
                 <td>
@@ -41,11 +44,35 @@
                         @endforeach
                     </select>
                 </td>
-                <td>
-                    
-                </td>
-            </tr>
+            </tr>  --}}
+            @foreach($cuttings as $cutting)
+                <tr>
+                    <td>
+                        {{$reference_id}}
+                    </td>
+                    <td>
+                        <input type="hidden" name="item_id[]" value={{$cutting->item_id}}>
+                        {{$cutting->endproduct->cat_name}} {{$cutting->endproduct->cat_measurement}}
+                    </td>
+                    <td>
+                        {{$cutting->dimension}}
+                    </td>
+                    <td>
+                        <input type="number" name="amount[]" class="form-control" placeholder="Amount" required value={{$cutting->amount}}>
+                    </td>
+                    <td>
+                        <select name="status[]" class="form-control">
+                            @foreach ($status as $value)
+                                <option value="{{$value->id}}">
+                                {{$value->name}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
+            @endforeach
         </table>
+        {{Form::hidden('reference_id',$reference_id)}}
         {{Form::hidden('_method','POST')}}
         {{Form::submit('Submit',['class'=>'btn btn-primary form-control'])}}
     {!! Form::close() !!}
