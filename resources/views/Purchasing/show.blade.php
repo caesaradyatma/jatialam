@@ -24,7 +24,7 @@
         </tr>
         @foreach($purchasings as $purchasing)
             <tr>
-                <td>{{$purchasing->item->item_name}}</td>
+                <td>INI MASALAH OBJECT</td>
                 <td>{{$purchasing->expected_amount}}</td>
                 <td>{{$purchasing->real_amount}}</td>
             </tr>

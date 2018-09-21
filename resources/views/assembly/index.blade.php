@@ -5,7 +5,7 @@
 <div class="container">
     <h2>Pembentukan Pintu</h2>
     <hr>
-    <a href = "/inventory/item/create" class="btn btn-primary" style="margin-top:10px;margin-bottom:15px;">Buat Tiket</a> <br>
+    <a href = "/assembly/create" class="btn btn-primary" style="margin-top:10px;margin-bottom:15px;">Buat Tiket</a> <br>
 
     <div class = "panel-group">
         <div class="panel panel-info">
