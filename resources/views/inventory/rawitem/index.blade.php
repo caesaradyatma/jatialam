@@ -16,30 +16,49 @@
                 <button class="btn btn-success" type="submit">Search</button>
             </div>
     </form>    
-<a href = "/inventory/item/create" class="btn btn-primary" style="margin-top:10px;margin-bottom:15px;">Bikin Balok Kayu</a> <br>
+<a href = "/balok/create" class="btn btn-primary" style="margin-top:10px;margin-bottom:15px;">Bikin Balok Kayu</a> <br>
 
-
+@if(count($lists) > 0)
 <table class="table table-hover">
     <tr class="success">
         <th>Balok Kode</th>
-        <th>Dimensi</th>
+        <th>Total</th>
+        <th>Ukuran</th>
         <th>Details</th>
     </tr>
 
-   
+ @foreach($lists as $list) 
 <tr>
 
-    <td>test</td>
-    <td>test</td>
+    <td>{{$list->code}}</td>
+    <td>{{$list->quantity}}</td>
+    <td>{{$list->balok_measure}}</td>
+    
     <td><a href="as" class="btn btn-default">Details</a></td>
 </tr>
 
-
+@endforeach
 
 
 </table>
 
+@else
 
+<table class="table table-hover">
+    <tr class="success">
+        <th>Nama Barang</th>
+        <th>Tipe Barang</th>
+        <th>Kode Barang</th>
+        <th>Stok Barang</th>
+        <th>Reorder Level</th>
+       
+    </tr>
+<tr>
+    <td>No product </td>
+</tr>
+</table>
+
+@endif
 
 </div>
 @endsection

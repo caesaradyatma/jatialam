@@ -18,6 +18,10 @@
 
 Route::get('/balok','BalokController@index');
 
+Route::get('/balok/create','BalokController@create');
+
+Route::post('/balok/items','BalokController@store');
+
 Route::get('/','HomeController@index');
 
 Route::get('/inventorypage','InventorypageController@pages');
