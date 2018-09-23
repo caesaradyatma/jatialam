@@ -47,6 +47,8 @@ Route::resource('cuttings','CuttingStageController');
 
 Route::post('cuttings/{id}','CuttingStageController@update_status');
 
+// oven
+
 Route::get('/ovens','OvenStageController@index');
 
 Route::get('/ovens/get_ref','OvenStageController@precreate');
@@ -58,3 +60,25 @@ Route::post('/ovens/get_ref','OvenStageController@create');
 Route::post('/ovens/create','OvenStageController@store');
 
 Route::get('/ovens/{id}','OvenStageController@show');
+
+Route::post('/ovens/{id}/destroy','OvenStageController@destroy');
+
+Route::post('/ovens/{id}/update_status','OvenStageController@update_status');
+
+// final
+
+Route::get('/finals','FinalStageController@index');
+
+Route::get('/finals/get_ref','FinalStageController@precreate');
+
+Route::post('/finals/get_ref','FinalStageController@create');
+
+// Route::get('/finals/create','finalStageController@create');
+
+Route::post('/finals/create','FinalStageController@store');
+
+Route::get('/finals/{id}','FinalStageController@show');
+
+Route::post('/finals/{id}/destroy','FinalStageController@destroy');
+
+Route::post('/finals/{id}/update_status','FinalStageController@update_status');

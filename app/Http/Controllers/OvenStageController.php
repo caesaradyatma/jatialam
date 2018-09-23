@@ -66,9 +66,9 @@ class OvenStageController extends Controller
     public function show($reference_id){
 
         $ovens = OvenStage::where('reference_id',$reference_id)->where('deleted_at',NULL)->get();
-        
+        $status = Status::where('category','oven')->get();
         if($ovens != NULL){
-            return view('OvenStage.show')->with('ovens',$ovens)->with('reference_id',$reference_id);
+            return view('OvenStage.show')->with('ovens',$ovens)->with('reference_id',$reference_id)->with('status',$status);
         }
         else{
             return redirect('ovens')->with('error','Data not found');
@@ -82,6 +82,16 @@ class OvenStageController extends Controller
 
     public function update(Request $request, $id){
 
+    }
+
+    public function update_status(Request $request, $reference_id){
+        $id = $request->input('id');
+        $status = $request->input('status');
+        $oven = OvenStage::where('reference_id',$reference_id)->where('id',$id)->first();
+        $oven->status = $status;
+        $oven->save();
+
+        return redirect('ovens/'.$reference_id)->with('success','Item Updated');
     }
 
     public function destroy($id){

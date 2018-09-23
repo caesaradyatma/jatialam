@@ -29,7 +29,14 @@
             </button>
             <div class="dropdown-container">
                 <a href="/ovens">List of Processes</a>
-                <a href="/ovens/create">Create Process</a>
+                <a href="/ovens/get_ref">Create Process</a>
+            </div>
+            <button class="dropdown-btn">Finishing Stage 
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container">
+                <a href="/finals">List of Processes</a>
+                <a href="/finals/get_ref">Create Process</a>
             </div>
         </div>
     <a href="#contact">Delivery</a>

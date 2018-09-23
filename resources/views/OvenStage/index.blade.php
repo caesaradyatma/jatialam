@@ -7,9 +7,9 @@
 
         <table class="table table-striped">
             <tr>
-                <th>Process ID</th>
-                <th>Item Name</th>
-                <th>Amount</th>
+                <th>Reference ID</th>
+                <th>Nama Barang</th>
+                <th>Jumlah</th>
                 <th>Status</th>
             </tr>
             @foreach($ovens as $oven)
