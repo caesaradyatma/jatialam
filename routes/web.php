@@ -16,6 +16,12 @@
 });
 */
 
+Route::get('/balok','BalokController@index');
+
+Route::get('/balok/create','BalokController@create');
+
+Route::post('/balok/items','BalokController@store');
+
 Route::get('/','HomeController@index');
 
 Route::get('/inventorypage','InventorypageController@pages');
@@ -38,6 +44,7 @@ Route::get('/datatracking/item', [
 
 Route::get('/assembly','AssemblyController@index');
 
+Route::get('/assembly/create','AssemblyController@create');
 
 Route::resource('inventory','InventoryController');
 
