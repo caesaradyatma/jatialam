@@ -47,7 +47,12 @@ class InventoryController extends Controller
         $lists = new Inventory;
         $lists->cat_name = $request->input('cat_name');
         $lists->cat_code = $request->input('cat_code');
-        $lists->cat_measurement = $request->input('cat_measurement');
+        $lists->length = $request->input('length');
+        $lists->width = $request->input('width');
+        $lists->keterangan = $request->input('keterangan');
+
+
+
  
         $lists->save();
  

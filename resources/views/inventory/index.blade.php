@@ -25,6 +25,7 @@
         <th>Kategori Barang</th>
         <th>Kode</th>
         <th>Ukuran</th>
+        <th>Note</th>
         <th>Details</th>
     </tr>
 
@@ -33,7 +34,8 @@
 
     <td>{{$list->cat_name}}</td>
     <td>{{$list->cat_code}}</td>
-    <td>{{$list->cat_measurement}}</td>
+    <td>{{$list->length}} x {{$list->width}}</td>
+    <td>{{$list->keterangan}}</td>
    
    
     <td><a href="/inventory/{{$list->id}}" class="btn btn-default">Details</a></td>

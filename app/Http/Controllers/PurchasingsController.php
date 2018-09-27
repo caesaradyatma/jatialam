@@ -27,10 +27,11 @@ class PurchasingsController extends Controller
             'real_amount' => 'required',
             'sender_pic' => 'required',
             'arrival_date' => 'required'
+            
         ]);
 
         //generate random number
-        $ref_id = uniqid();
+        $ref_id = str_random(5);
         
         $purchasing = new Purchasing;
         $purchasing->expected_amount = $request->input('expected_amount');
