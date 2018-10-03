@@ -27,7 +27,7 @@
                     @endforeach  
                 </select>
 
-            {{ Form::hidden($item->id)}}                  
+            {{ Form::hidden('$item->id')}}                  
         </div> 
 
          <div class="row">

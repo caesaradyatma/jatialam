@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Inventory;
 use App\Item;
 
+use DB;
+
 class ItemController extends Controller 
 {
     public function itemShow($id){
@@ -37,16 +39,20 @@ class ItemController extends Controller
 
     public function createe()
     {
-        $lists = Inventory::where('cat_name', 'LIKE', '%' . 'cat_name' . '%')->get();
-        
+        $lists = Inventory::all();
 
-        if ($lists === 0) {
-           return view('inventory.create');
+        if (count($lists != NULL)) {
+           
+           $lists = Inventory::where('cat_delete',NULL)->get();
+           return View('inventory.item.create')->with('items',$lists); 
         } else {
-            $items = Inventory::all();
-            return View('inventory.item.create')->with('items',$items); 
+            return view('inventory.create');
         }
        
        
     }
+
+    
+
+    
 }

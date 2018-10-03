@@ -8,6 +8,7 @@ use App\Item;
 use App\Status;
 use App\Inventory;
 use App\Balok;
+use DB;
 
 class CuttingStageController extends Controller
 {
@@ -56,6 +57,8 @@ class CuttingStageController extends Controller
     }
     
     public function show($reference_id){
+
+
 
         $cuttings = CuttingStage::where('reference_id',$reference_id)->where('deleted_at',NULL)->get();
         $status = Status::where('deleted_at',NULL)->where('category','cutting')->get();

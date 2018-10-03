@@ -18,7 +18,7 @@
                     <td>{{$oven->oven_endproduct->cat_name}} {{$oven->oven_endproduct->cat_measurement}}</td>
                     <td>{{$oven->amount}}</td>
                     <td>{{$oven->oven_status->name}}</td>
-                    {{--  <td>{{$oven->oven_status->name}}</td>  --}}
+             
                 </tr>
             @endforeach
         </table>

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Inventory;
 use App\Item;
 
+use DB;
+
 class InventoryController extends Controller
 {
     /**
@@ -22,7 +24,7 @@ class InventoryController extends Controller
         $lists = Inventory::where('cat_delete', NULL)->orderBy('created_at','desc')->search($test)->paginate(10);
   
 
-        return view ('inventory.index')->with(compact('lists','items'));
+        return view ('inventory.index')->with('lists',$lists);
         
     }
 
@@ -99,8 +101,26 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+      
+    }
+
+    public function delete(Request $request)
+    {
+      
+        $date = date('Y-m-d');
+        $delets = $request->delete;
+        
+       
+    
+      
+    
+        $deletes = DB::table('inventorylists')->where('id',$delets);
+        $deletes->cat_delete = $date;
+
+        $deletes = DB::table('inventorylists')->where('id',$delets)->delete();
+      
+        return redirect('/inventory')->with('success', 'Item removed');
     }
 }

@@ -19,6 +19,8 @@
     </form>    
 <a href = "/inventory/item/create" class="btn btn-primary" style="margin-top:10px;margin-bottom:15px;">Tambah Ukuran Barang</a> <br>
 
+<form method="POST" action="{{ url('/delete') }}"> 
+    {{csrf_field()}}
 @if(count($lists) > 0)
 <table class="table table-hover">
     <tr class="success">
@@ -27,9 +29,13 @@
         <th>Ukuran</th>
         <th>Note</th>
         <th>Details</th>
+        <th><input type="submit" class="btn btn-danger" value="Delete Marked"></th>
+        
+
     </tr>
 
- @foreach($lists as $list)     
+ @foreach($lists as $list)  
+
 <tr>
 
     <td>{{$list->cat_name}}</td>
@@ -39,14 +45,25 @@
    
    
     <td><a href="/inventory/{{$list->id}}" class="btn btn-default">Details</a></td>
+
+    <td> 
+           <label><input type="checkbox" class="checkthis" value="{{$list->id}}" name="delete[]"></label><br />
+
+          </td>
+    
+
 </tr>
+
+</form>
 
 @endforeach
 
 
 
 </table>
+
 {{$lists->links()}}
+
 @else
 <table class="table table-hover">
     <tr class="success">
@@ -63,6 +80,28 @@
 </table>
 
 @endif
+
+</form>   
+
+<!-- Modal Delete -->
+
+<div class="modal fade" id="delete" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Konfirmasi Barang</h4>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h3>Anda Yakin Untuk Menghapus Barang?</h3>
+                        </div>
+                        <div class="modal-footer">
+                            @include('inventory.inventory_modaldelete')
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
 
 </div>
 @endsection

@@ -13,7 +13,7 @@
                 <th>Amount</th>
                 <th>Status</th>
             </tr>
-            @foreach($cuttings as $cutting)
+            @foreach($cuttings->unique('reference_id') as $cutting)
                 <tr>
                     <td><a href="cuttings/{{$cutting->reference_id}}">{{$cutting->reference_id}}</a></td>
                     <td>{{$cutting->cutting_item->code}}</td>
