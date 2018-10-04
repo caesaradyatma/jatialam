@@ -16,7 +16,7 @@ class Item extends Model
      public $timestamps = true;
 
      public function inventory(){
-      return $this->belongsTo(Inventory::class);
+      return $this->belongsTo('App\Inventory','item_id');
     }
 
     

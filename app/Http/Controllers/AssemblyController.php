@@ -26,32 +26,37 @@ class AssemblyController extends Controller
         $item_array = array();
         $amount_array = array();
         $assignment_array = array();
+        $dimension_array = array();
    
 
       
         $item_array = $request->input('item_id');
         $amount_array = $request->input('ass_unit');
         $assignment_array = $request->input('ass_assignment');
+        $dimension_array = $request->input('ass_dimension');
         $ass_name = $request->input('ass_name');
         $ass_number = $request->input('ass_number');
-
-   
-
-        
-        $ref_id = uniqid();
+        $ass_status = $request->input('ass_status');
+        $ass_desc = $request->input('ass_desc');
+        $ass_creation = $request->input('ass_creation');
+        $ass_final = $request->input('ass_final');
 
         
 
         for($counter = 0; $counter < sizeof($item_array);$counter++){
-            $cutting = new Assembly;
-            $cutting->item_id = $item_array[$counter];
-            $cutting->ass_assignment = $assignment_array[$counter];
-            $cutting->ass_unit = $amount_array[$counter];
-            $cutting->ass_name = $ass_name;
-            $cutting->ass_number = $ass_number;
+            $ass = new Assembly;
+            $ass->item_id = $item_array[$counter];
+            $ass->ass_assignment = $assignment_array[$counter];
+            $ass->ass_unit = $amount_array[$counter];
+            $ass->ass_dimension = $dimension_array[$counter];
+            $ass->ass_name = $ass_name;
+            $ass->ass_number = $ass_number;
+            $ass->ass_status = $ass_status;
+            $ass->ass_desc = $ass_desc;
+            $ass->creation_date = $ass_creation;
+            $ass->final_date = $ass_final;
 
-            $cutting->ass_status = $ref_id;
-            $cutting->save();
+            $ass->save();
         }
 
 
@@ -62,7 +67,10 @@ class AssemblyController extends Controller
     }
 
     public function show($ass_number) {
-        $datas = Assembly::where('ass_number',$ass_number)->where('ass_delete',NULL)->get();
-        return view('assembly.show')->with('datas',$datas)->with('ass_number',$ass_number);
+        $datas = Assembly::where('ass_number',$ass_number)->where('ass_delete',NULL)->orderBy('created_at','desc')->paginate(10);
+        
+            return view('assembly.show')->with('datas',$datas)->with('ass_number',$ass_number);
+      
+        
     }
 }

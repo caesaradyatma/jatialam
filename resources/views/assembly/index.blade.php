@@ -16,15 +16,15 @@
            <div class="panel-body">
                <div class="row">
                    <div class="col-lg-3">
-                       <label>Tanggal : </label>
+                       <label>Tanggal Pembuatan: </label>
                    <p style="font-weight: bold">{{$assembly->ass_name}}</p>
                    </div>
                    <div class="col-lg-3">
-                       <label>Order Pembelian : </label>
+                       <label>Produk Akhir : </label>
                        <p style="font-weight: bold">{{$assembly->ass_name}}</p>
                     </div>
                     <div class="col-lg-3">
-                           <label>Perkiraan Pengiriman : </label>
+                           <label>Perkiraan Penyelesaian : </label>
                            <p style="font-weight: bold">{{$assembly->ass_name}}</p>
                         </div>
                     <div class="col-lg-3">
