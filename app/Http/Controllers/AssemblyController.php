@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Item;
 use App\Assembly;
+use App\Inventory;
 
 class AssemblyController extends Controller
 {
@@ -17,8 +18,9 @@ class AssemblyController extends Controller
    public function create() {
     
     $items = Item::all();
+    $cats = Inventory::all();
 
-    return view('assembly.create')->with('items',$items);
+    return view('assembly.create')->with(compact('items','cats'));
     }
 
     public function storee(Request $request){
@@ -68,7 +70,6 @@ class AssemblyController extends Controller
 
     public function show($ass_number) {
         $datas = Assembly::where('ass_number',$ass_number)->where('ass_delete',NULL)->orderBy('created_at','desc')->paginate(10);
-        
             return view('assembly.show')->with('datas',$datas)->with('ass_number',$ass_number);
       
         

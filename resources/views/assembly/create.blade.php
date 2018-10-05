@@ -38,7 +38,7 @@
     <table class="table table-striped" id="selectInput">        
         <tr>
             <th>Barang</th>
-            <th>Dimensi</th>
+            <th>Kategori</th>
             <th>Jumlah</th>
             <th>Rincian Pekerjaan</th>
            
@@ -48,7 +48,7 @@
                 <select name="item_id[]" class="form-control">
                     @foreach ($items as $balok)
                         <option value="{{$balok->id}}">
-                        {{$balok->item_name}}
+                        {{$balok->item_name}} {{$balok->item_length}} x {{$balok->item_width}} x {{$balok->item_height}} 
                         </option>
                     @endforeach
                 </select>
@@ -56,9 +56,9 @@
 
              <td>
                 <select name="ass_dimension[]" class="form-control">
-                    @foreach ($items as $balok)
+                    @foreach ($cats as $balok)
                         <option value="{{$balok->id}}">
-                        {{$balok->item_length}} x {{$balok->item_width}} x {{$balok->item_height}} 
+                        {{$balok->cat_name}}
                         </option>
                     @endforeach
                 </select>
@@ -113,7 +113,7 @@
             e.preventDefault();
             if(x < max_fields){
                 x++;
-                $(wrapper).append('<tr><td><select name="item_id[]" class="form-control">@foreach($items as $balok)<option value="{{$balok->id}}">{{$balok->item_name}}</option>@endforeach</select></td><td><select name="ass_dimension[]" class="form-control">@foreach ($items as $balok)<option value="{{$balok->id}}">{{$balok->item_length}} x {{$balok->item_width}} x {{$balok->item_height}}</option>@endforeach</select></td><td><input type="number" name="ass_unit[]" class="form-control" placeholder="Amount" required></td><td><select name="ass_assignment[]" class="form-control"> <option selected>Vertical</option><option>Horizontal</option><option>list Sponeg</option><option>Dor Panel</option></select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>');
+                $(wrapper).append('<tr><td><select name="item_id[]" class="form-control">@foreach($items as $balok)<option value="{{$balok->id}}">{{$balok->item_name}} {{$balok->item_length}} x {{$balok->item_width}} x {{$balok->item_height}}</option>@endforeach</select></td><td><select name="ass_dimension[]" class="form-control">@foreach ($items as $balok)<option value="{{$balok->id}}">{{$balok->item_length}} x {{$balok->item_width}} x {{$balok->item_height}}</option>@endforeach</select></td><td><input type="number" name="ass_unit[]" class="form-control" placeholder="Amount" required></td><td><select name="ass_assignment[]" class="form-control"> <option selected>Vertical</option><option>Horizontal</option><option>list Sponeg</option><option>Dor Panel</option></select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>');
             }
             else
             {

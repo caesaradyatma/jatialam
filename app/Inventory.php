@@ -26,6 +26,8 @@ class Inventory extends Model
          return $this->hasMany('App\Item');
      }
 
+ 
+
     
    
 

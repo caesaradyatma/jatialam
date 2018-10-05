@@ -1,31 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Detail Data Pemotongan</h1>
+<h1>Penyusunan Tiket</h1>
     <table class="table">
         <tr>
             <th>Ref ID</th>
             <td>{{$ass_number}}</td>
         </tr>
+
+         <tr>
+            <th>Pembentukan</th>
+            @foreach($datas->unique('ass_name') as $cut)
+            <td>{{$cut->ass_name}}</td>
+            @endforeach
+        </tr>
     </table>
 
     <table class="table table-striped">
         <tr>
-            <th>ID Balok</th>
+            <th>Barang</th>
             <th>Jumlah</th>
             <th>Barang Akhir</th>
-            <th>Dimensi</th>
-            <th>Status</th>
-            <th colspan="2">Update Status</th>
+            <th>Unit Kerja</th>
         </tr>
         @foreach($datas as $cutting)
             <tr>
-                <td>{{$cutting->ass_name}}</td>
+                <td>{{$cutting->item_id}}</td>
                 <td>{{$cutting->ass_unit}}</td>
                 <td>{{$cutting->ass_number}}</td>
-                <td>{{$cutting->ass_unit}}</td>
-           
+                <td>{{$cutting->ass_assignment}}</td>
+            
+      
             </tr>
-        @endforeach
+            @endforeach
     </table>
 @endsection

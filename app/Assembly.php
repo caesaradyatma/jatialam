@@ -14,4 +14,10 @@ class Assembly extends Model
  
      //public stamps
      public $timestamps = true;
+
+     public function ass_dimension()
+     {
+         return $this->belongsTo(Inventory::class,'ass_dimension');
+     }
+ 
 }
