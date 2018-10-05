@@ -8,6 +8,7 @@ use App\Item;
 use App\Status;
 use App\Inventory;
 use App\Balok;
+use App\Purchasing;
 
 class CuttingStageController extends Controller
 {
@@ -16,26 +17,32 @@ class CuttingStageController extends Controller
         return view('CuttingStage.index')->with('cuttings',$cuttings);
     }
 
+    public function precreate(){
+        $purchasings = Purchasing::where('deleted_at',NULL)->where('rejected_amount','>','0')->get();
+        return view('CuttingStage.precreate')->with('purchasings',$purchasings);
+    }
+
+
     public function create(){
         $items = Item::all();
         $baloks = Balok::all();
+        $purchasings = Purchasing::where('deleted_at',NULL)->where('rejected_amount','>','0')->get();
         $status = Status::where('category','cutting')->get();
         $inventories = Inventory::all();
-        return view('CuttingStage.create')->with('items',$items)->with('status',$status)->with('inventories',$inventories)->with('baloks',$baloks);
+        return view('CuttingStage.create')->with('items',$items)->with('status',$status)->with('inventories',$inventories)->with('baloks',$baloks)->with('purchasings',$purchasings);
     }
 
     public function store(Request $request){
         
+
         $item_array = array();
         $amount_array = array();
         $status_array = array();
-        $endproduct_array = array();
         $dimension_array = array();
 
         $item_array = $request->input('item_id');
         $amount_array = $request->input('amount');
         $status_array = $request->input('status');
-        $endproduct_array = $request->input('endproduct_id');
         $dimension_array = $request->input('dimension');
         
         $ref_id = uniqid();

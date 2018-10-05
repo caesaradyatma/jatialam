@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-    {{--  Button trigger modal  --}}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        Check List Pemotongan
-    </button>
     
     {{--  Modal  --}}
     {{--  <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">  --}}
@@ -49,7 +44,12 @@
             </div>
         </div>
     </div>
-    <h1>Check Reference</h1>
+    <h1>Buat Proses Oven Lanjutan dari Pemotongan</h1>
+    {{--  Button trigger modal  --}}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Check List Pemotongan
+    </button>
+    <hr>
     {!! Form::open(['action' => 'OvenStageController@create','method' => 'POST']) !!}
         <table class="table table-striped">
             <tr>
@@ -58,6 +58,9 @@
             <tr>
                 <td>
                     <select name="reference_id" class="form-control" id="reference_id">
+                        <option value="0">
+                            Buat Process Baru
+                        </option>
                         @foreach ($cuttings as $cutting)
                             <option value="{{$cutting->reference_id}}">
                                 {{$cutting->reference_id}}

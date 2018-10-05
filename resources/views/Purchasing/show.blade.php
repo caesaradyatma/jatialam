@@ -18,15 +18,17 @@
 
     <table class="table table-striped">
         <tr>
-            <th>Item Name</th>
-            <th>Expected Amount</th>
-            <th>Real Amount</th>
+            <th>Nama Barang</th>
+            <th>Dimensi</th>
+            <th>Jumlah Barang</th>
+            <th>Barang Buruk</th>
         </tr>
         @foreach($purchasings as $purchasing)
             <tr>
-                <td>INI MASALAH OBJECT</td>
-                <td>{{$purchasing->expected_amount}}</td>
-                <td>{{$purchasing->real_amount}}</td>
+                <td>{{$purchasing->purchasing_endproduct->cat_name}} {{$purchasing->purchasing_endproduct->cat_measurement}}</td>
+                <td>{{$purchasing->dimension}}</td>
+                <td>{{$purchasing->amount}}</td>
+                <td>{{$purchasing->rejected_amount}}</td>
             </tr>
         @endforeach
     </table>

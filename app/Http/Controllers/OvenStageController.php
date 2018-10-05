@@ -7,6 +7,7 @@ use App\Item;
 use App\Status;
 use App\OvenStage;
 use App\CuttingStage;
+use App\Inventory;
 
 class OvenStageController extends Controller
 {
@@ -22,7 +23,8 @@ class OvenStageController extends Controller
         // return view('OvenStage.create')->with('items',$items)->with('status',$status)->with('cuttings',$cuttings);
         $reference_id = $request->input('reference_id');
         $cuttings = CuttingStage::where('reference_id',$reference_id)->where('deleted_at',NULL)->get();
-        return view('OvenStage.create')->with('cuttings',$cuttings)->with('status',$status)->with('reference_id',$reference_id);
+        $inventorylists = Inventory::all();
+        return view('OvenStage.create')->with('cuttings',$cuttings)->with('status',$status)->with('reference_id',$reference_id)->with('inventorylists',$inventorylists);
     }
     
     public function precreate(){
@@ -47,9 +49,16 @@ class OvenStageController extends Controller
         $item_array = $request->input('item_id');
         $amount_array = $request->input('amount');
         $status_array = $request->input('status'); 
-        $ref_id = $request->input('reference_id');
+        $size = sizeof($item_array);
 
-        for($counter = 0; $counter < sizeof($item_array);$counter++){
+        if($request->input('reference_id') == 0){
+            $ref_id = uniqid();
+        }
+        else{
+            $ref_id = $request->input('reference_id');
+        }
+
+        for($counter = 0;$counter < $size;$counter++){
             $oven = new OvenStage;
             $oven->item_id = $item_array[$counter];;
             $oven->endproduct_id = $item_array[$counter];

@@ -45,20 +45,25 @@
                     </select>
                 </td>
             </tr>  --}}
-            @foreach($cuttings as $cutting)
+            @if($reference_id == 0)
                 <tr>
                     <td>
-                        {{$reference_id}}
+                        New
                     </td>
                     <td>
-                        <input type="hidden" name="item_id[]" value={{$cutting->item_id}}>
-                        {{$cutting->endproduct->cat_name}} {{$cutting->endproduct->cat_measurement}}
+                        <select name="item_id[]" class="form-control">
+                            @foreach ($inventorylists as $inventorylist)
+                                <option value="{{$inventorylist->id}}">
+                                {{$inventorylist->cat_name}} {{$inventorylist->cat_measurement}}
+                                </option>
+                            @endforeach
+                        </select>
                     </td>
                     <td>
-                        {{$cutting->dimension}}
+                        dimension
                     </td>
                     <td>
-                        <input type="number" name="amount[]" class="form-control" placeholder="Amount" required value={{$cutting->amount}}>
+                        <input type="number" name="amount[]" class="form-control" placeholder="Amount" required >
                     </td>
                     <td>
                         <select name="status[]" class="form-control">
@@ -70,7 +75,34 @@
                         </select>
                     </td>
                 </tr>
-            @endforeach
+            @else
+                @foreach($cuttings as $cutting)
+                    <tr>
+                        <td>
+                            {{$reference_id}}
+                        </td>
+                        <td>
+                            <input type="hidden" name="item_id[]" value={{$cutting->item_id}}>
+                            {{$cutting->endproduct->cat_name}} {{$cutting->endproduct->cat_measurement}}
+                        </td>
+                        <td>
+                            {{$cutting->dimension}}
+                        </td>
+                        <td>
+                            <input type="number" name="amount[]" class="form-control" placeholder="Amount" required value={{$cutting->amount}}>
+                        </td>
+                        <td>
+                            <select name="status[]" class="form-control">
+                                @foreach ($status as $value)
+                                    <option value="{{$value->id}}">
+                                    {{$value->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
         </table>
         {{Form::hidden('reference_id',$reference_id)}}
         {{Form::hidden('_method','POST')}}

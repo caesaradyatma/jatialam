@@ -12,4 +12,9 @@ class Purchasing extends Model
     {
       return $this->belongsTo('App\Item','item_id');
     }
+
+    public function purchasing_endproduct()
+    {
+      return $this->belongsTo('App\Inventory','item_id');
+    }
 }

@@ -24,5 +24,5 @@
             @endforeach
         </table>
     </div>
-
+    {{ $cuttings->links() }}
 @endsection

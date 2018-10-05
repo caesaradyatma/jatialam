@@ -56,6 +56,8 @@ Route::post('cuttings/{id}','CuttingStageController@update_status');
 
 // oven
 
+// Route::resource('/ovens','OvenStageController');
+
 Route::get('/ovens','OvenStageController@index');
 
 Route::get('/ovens/get_ref','OvenStageController@precreate');

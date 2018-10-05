@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Purchasing;
 use App\Item;
+use App\Inventory;
 
 class PurchasingsController extends Controller
 {
@@ -14,8 +15,7 @@ class PurchasingsController extends Controller
     }
 
     public function create(){
-        $items = Item::all();
-        
+        $items = Inventory::all();
         return view('Purchasing.create')->with('items',$items);
     }
 
@@ -23,22 +23,37 @@ class PurchasingsController extends Controller
         
         
         $this->validate($request,[
-            'expected_amount' => 'required',
-            'real_amount' => 'required',
+            'rejected_amount' => 'required',
+            'amount' => 'required',
             'sender_pic' => 'required',
             'arrival_date' => 'required'
         ]);
 
         //generate random number
         $ref_id = uniqid();
+        $item_array = array();
+        $amount_array = array();
+        $rejected_array = array();
+        $dimension_array = array();
+
+        $item_array = $request->input('item_id');
+        $amount_array = $request->input('amount');
+        $rejected_array = $request->input('rejected_amount');
+        $dimension_array = $request->input('dimension');
+        $size = sizeof($item_array);
         
-        $purchasing = new Purchasing;
-        $purchasing->expected_amount = $request->input('expected_amount');
-        $purchasing->real_amount = $request->input('real_amount');
-        $purchasing->sender_pic = $request->input('sender_pic');
-        $purchasing->arrival_date = $request->input('arrival_date');
-        $purchasing->reference_id = $ref_id;
-        $purchasing->save();
+        for($x = 0;$x < $size;$x++){
+            $purchasing = new Purchasing;
+            $purchasing->item_id = $item_array[$x];
+            $purchasing->amount = $amount_array[$x];
+            $purchasing->rejected_amount = $rejected_array[$x];
+            $purchasing->dimension = $dimension_array[$x];
+            $purchasing->sender_pic = $request->input('sender_pic');
+            $purchasing->arrival_date = $request->input('arrival_date');
+            $purchasing->reference_id = $ref_id;
+            $purchasing->save();
+        }
+        
         
         return redirect('purchasings')->with('success','Data has been inputted');
     }
