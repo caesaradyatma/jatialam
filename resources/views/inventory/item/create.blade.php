@@ -19,22 +19,55 @@
 
         <div class="form-group" >
             {{Form::label('inventory_id','Kategori Barang')}}
-            
                 <select name="inventory_id" class="form-control">
                     @foreach($items as $item)
                         @if($item->item_delete == null)
-                            <option value="{{$item->id}}">{{ $item->cat_name }}</option> 
+                            <option value="{{$item->id}}">{{ $item->cat_name }} {{$item->length}} x {{$item->width}}</option> 
                         @endif
                     @endforeach  
                 </select>
 
-            {{ Form::hidden($item->id)}}                  
+            {{ Form::hidden('$item->id')}}                  
         </div> 
 
-        <div class="form-group">
-                {{Form::label('item_measurement','Ukuran')}}
-                {{Form::text('item_measurement','',['class' => 'form-control', 'placeholder' => 'Ukuran'])}}
-         </div>  
+         <div class="row">
+            <div class="col-md-2">
+            {{Form::label('measurement','Ukuran')}}
+            </div>
+             </div>
+            
+            
+            <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                        
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon">P</div>
+                                <input type="text" class="form-control" name="item_length" id="inlineFormInputGroup" placeholder="Panjang">
+                            </div> 
+                                  
+                </div> 
+            </div>
+             
+             <div class="col-md-2">
+            <div class="form-group">
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <div class="input-group-addon">L</div>
+                    <input type="text" class="form-control" name="item_width" id="inlineFormInputGroup" placeholder="Lebar">
+                </div>       
+            </div>
+            </div>
+
+            <div class="col-md-2">
+            <div class="form-group">
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <div class="input-group-addon">T</div>
+                    <input type="text" class="form-control" name="item_height" id="inlineFormInputGroup" placeholder="Tinggi">
+                </div>       
+            </div>
+            </div>
+
+            </div> 
 
          <div class="form-group">
             {{Form::label('item_assembly','Kode Pembentukan')}}

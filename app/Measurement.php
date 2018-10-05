@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Measurement extends Model
 {
      //table name
-     protected $table = 'items';
+     protected $table = 'itemeasurement';
 
      //primary key
      public $primarykey = 'id';
@@ -15,11 +15,7 @@ class Item extends Model
      //public stamps
      public $timestamps = true;
 
-     public function inventory(){
-      return $this->belongsTo(Inventory::class);
+     public function item(){
+      return $this->belongsTo(Item::class);
     }
-
-    
-
-   
 }

@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Assembly extends Model
 {
      //table name
-     protected $table = 'items';
+     protected $table = 'assamblies';
 
      //primary key
      public $primarykey = 'id';
@@ -15,11 +15,9 @@ class Item extends Model
      //public stamps
      public $timestamps = true;
 
-     public function inventory(){
-      return $this->belongsTo(Inventory::class);
-    }
-
-    
-
-   
+     public function ass_dimension()
+     {
+         return $this->belongsTo(Inventory::class,'ass_dimension');
+     }
+ 
 }

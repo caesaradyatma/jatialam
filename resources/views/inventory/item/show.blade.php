@@ -23,18 +23,7 @@
         <h3>Total Dibutuhkan</h3>
       </div>
       <div class="col-sm-2 other">
-        <h3>Aksi</h3>
-        <div class="row">
-            <div class="col-sm-4 other">
-              <h4>Pending</h4>
-            </div>
-            <div class="col-sm-4 other2">
-              <h4>On Process</h4>
-            </div>
-            <div class="col-sm-4 other2">
-                <h4>Ready</h4>
-              </div>
-          </div>
+        <h3>Barang Jadi</h3>
       </div>
       <div class="col-sm-2 other">
         <h3>Keterangan</h3>
@@ -51,7 +40,7 @@
         <h3>{{$list->item_name}}</h3>
       </div>
       <div class="col-sm-2">
-        <h3>{{$list->item_measurement}}</h3>
+        <h3>{{$list->item_length}} x {{$list->item_width}} x {{$list->item_height}}</h3>
       </div>
       <div class="col-sm-2">
         <h3>{{$list->item_assembly}}</h3>
@@ -60,23 +49,15 @@
         <h3>{{$list->item_qty}}</h3>
       </div>
       <div class="col-sm-2 other">
-        <div class="row">
-            <div class="col-sm-4 other">
-              <h4>1</h4>
-            </div>
-            <div class="col-sm-4 other2">
-              <h4>2</h4>
-            </div>
-            <div class="col-sm-4 other2">
-                <h4>3</h4>
-              </div>
-          </div>
+        <h3>0</h3>
       </div>
       <div class="col-sm-2 other">
         <h3>Keterangan</h3>
       </div>
     </div>
   </div>
+
+  <hr>
 
 @endforeach
 

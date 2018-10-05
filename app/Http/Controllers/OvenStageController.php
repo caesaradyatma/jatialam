@@ -12,7 +12,7 @@ use App\Inventory;
 class OvenStageController extends Controller
 {
     public function index(){
-        $ovens = OvenStage::where('deleted_at',NULL)->paginate(10);
+        $ovens = OvenStage::where('deleted_at',NULL)->paginate(10)->all();
         return view('OvenStage.index')->with('ovens',$ovens);
     }
 

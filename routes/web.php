@@ -16,13 +16,15 @@
 });
 */
 
+
+
 Route::get('/balok','BalokController@index');
 
 Route::get('/balok/create','BalokController@create');
 
 Route::post('/balok/items','BalokController@store');
 
-Route::get('/','HomeController@index');
+Route::get('/','DashboardController@index');
 
 Route::get('/inventorypage','InventorypageController@pages');
 
@@ -76,6 +78,8 @@ Route::post('/ovens/{id}/update_status','OvenStageController@update_status');
 
 // final
 
+
+
 Route::get('/finals','FinalStageController@index');
 
 Route::get('/finals/get_ref','FinalStageController@precreate');
@@ -91,3 +95,13 @@ Route::get('/finals/{id}','FinalStageController@show');
 Route::post('/finals/{id}/destroy','FinalStageController@destroy');
 
 Route::post('/finals/{id}/update_status','FinalStageController@update_status');
+
+
+Route::post('/assembly/as','AssemblyController@storee');
+
+Route::get('/assembly/{assemblies}','AssemblyController@show');
+
+Route::get('/inventory/destroy/', 'InventoryController@destroy');
+
+Route::post('/delete','InventoryController@delete');
+

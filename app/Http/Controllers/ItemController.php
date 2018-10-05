@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Storage;
 use App\Inventory;
 use App\Item;
 
-class ItemController extends Controller
+use DB;
+
+class ItemController extends Controller 
 {
     public function itemShow($id){
 
         $items = Inventory::find($id)->item;
-
-        return view('inventory.item.show')->with('items',$items);
+    
+        return view('inventory.item.show')->with(compact('items','status'));
        
     }
 
@@ -25,6 +27,9 @@ class ItemController extends Controller
         $items->item_measurement = $request->input('item_measurement'); 
         $items->inventory_id = $request->input('inventory_id');
         $items->item_qty = $request->input('item_qty');
+        $items->item_length = $request->input('item_length');
+        $items->item_width = $request->input('item_width');
+        $items->item_height = $request->input('item_height');
         $items->item_assembly = $request->input('item_assembly');
         $items->item_description = $request->input('item_description');
 
@@ -34,15 +39,20 @@ class ItemController extends Controller
 
     public function createe()
     {
-        $lists = Inventory::count();
+        $lists = Inventory::all();
 
-        if ($lists === 0) {
-           return view('inventory.create');
+        if (count($lists != NULL)) {
+           
+           $lists = Inventory::where('cat_delete',NULL)->get();
+           return View('inventory.item.create')->with('items',$lists); 
         } else {
-            $items = Inventory::all();
-            return View('inventory.item.create')->with('items',$items); 
+            return view('inventory.create');
         }
        
        
     }
+
+    
+
+    
 }

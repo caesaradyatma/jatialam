@@ -27,6 +27,7 @@ class PurchasingsController extends Controller
             'amount' => 'required',
             'sender_pic' => 'required',
             'arrival_date' => 'required'
+            
         ]);
 
         //generate random number
@@ -53,6 +54,7 @@ class PurchasingsController extends Controller
             $purchasing->reference_id = $ref_id;
             $purchasing->save();
         }
+        $ref_id = str_random(5);
         
         
         return redirect('purchasings')->with('success','Data has been inputted');

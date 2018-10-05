@@ -22,4 +22,6 @@ class CuttingStage extends Model
     {
         return $this->belongsTo('App\Inventory','endproduct_id');
     }
+
+   
 }
