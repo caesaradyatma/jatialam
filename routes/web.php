@@ -105,3 +105,7 @@ Route::get('/inventory/destroy/', 'InventoryController@destroy');
 
 Route::post('/delete','InventoryController@delete');
 
+Route::post('/item/edit/{id}', [
+    'uses' => 'ItemController@update',
+   'as' => 'items.update'
+ ]);

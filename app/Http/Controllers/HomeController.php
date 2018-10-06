@@ -10,9 +10,4 @@ class HomeController extends Controller
         return view('layouts.app');
     }
 
-
-
-
-
-    
 }

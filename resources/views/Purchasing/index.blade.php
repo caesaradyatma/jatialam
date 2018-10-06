@@ -8,7 +8,7 @@
         <th>Reference ID</th>
         <th>Sender PIC</th>
         <th>Arrival Date</th>
-    @foreach($purchasings as $purchasing)
+    @foreach($purchasings->unique('reference_id') as $purchasing)
         <tr>
             <td><a href="purchasings/{{$purchasing->reference_id}}">{{$purchasing->reference_id}}</a></td>
             <td>{{$purchasing->sender_pic}}</td>

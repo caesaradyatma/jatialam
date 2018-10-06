@@ -25,7 +25,7 @@
                 <select name="item_id[]" class="form-control">
                     @foreach($items as $item)
                         <option value="{{$item->id}}">
-                            {{$item->cat_name}} {{$item->cat_measurement}}
+                            {{$item->cat_name}} {{$item->length}}x{{$item->width}}
                         </option>
                     @endforeach
                 </select>
@@ -68,7 +68,7 @@
             if(x < max_fields){
                 x++;
 
-                $(wrapper).append('<tr><td></td><td></td><td><select name="item_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->cat_name}} {{$item->cat_measurement}}</option>@endforeach</select></td><td><input type="text" name="dimension[]" class="form-control" placeholder="panjang x lebar x tinggi"></td></td><td><input type="number" name="amount[]" class="form-control" placeholder="Barang Bagus" required></td><td><input type="number" name="rejected_amount[]" class="form-control" placeholder="Barang Buruk" required></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); //add input box
+                $(wrapper).append('<tr><td></td><td></td><td><select name="item_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->cat_name}} {{$item->length}}x{{$item->width}}</option>@endforeach</select></td><td><input type="text" name="dimension[]" class="form-control" placeholder="panjang x lebar x tinggi"></td></td><td><input type="number" name="amount[]" class="form-control" placeholder="Barang Bagus" required></td><td><input type="number" name="rejected_amount[]" class="form-control" placeholder="Barang Buruk" required></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); //add input box
             }
             else
             {
