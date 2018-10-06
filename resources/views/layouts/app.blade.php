@@ -55,6 +55,44 @@
     </script>
     
     @yield('scripts')
+
+    <script>
+        $('#edit').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var title = button.data('mytitle')
+        var type = button.data('itemtype') 
+        var sku = button.data('sku') 
+        var measurement = button.data('measurement') 
+
+        var modal = $(this)
+
+        modal.find('.modal-body #item_name').val(title)
+        modal.find('.modal-body #item_type').val(type)
+        modal.find('.modal-body #item_assembly').val(sku)
+        modal.find('.modal-body #item_qty').val(measurement)
+     
+
+})
+
+$('#modal-form-submit').on('click', function(e){
+var button = $(event.relatedTarget) // Button that triggered the modal
+        var title = button.data('mytitle')
+        var type = button.data('itemtype') 
+        var sku = button.data('sku') 
+        var measurement = button.data('measurement') 
+
+        var modal = $(this)
+
+e.preventDefault();
+
+        modal.find('.modal-body #item_name').val(title)
+        modal.find('.modal-body #item_type').val(type)
+        modal.find('.modal-body #item_assembly').val(sku)
+        modal.find('.modal-body #item_qty').val(measurement)
+ 
+$('#modal-form').submit();
+});
+</script>
 </body>
 </html>
 

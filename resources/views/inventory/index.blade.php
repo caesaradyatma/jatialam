@@ -21,6 +21,7 @@
 
 <form method="POST" action="{{ url('/delete') }}"> 
     {{csrf_field()}}
+
 @if(count($lists) > 0)
 <table class="table table-hover">
     <tr class="success">

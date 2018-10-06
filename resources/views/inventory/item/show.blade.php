@@ -52,7 +52,11 @@
         <h3>0</h3>
       </div>
       <div class="col-sm-2 other">
-        <h3>Keterangan</h3>
+
+      {{$list->item_description}}
+     <!--   <h3> <button class="btn btn-default" data-mytitle="{{$list->item_name}}" data-itemtype="{{$list->item_length}}" data-sku="{{$list->item_assembly}}" 
+                    data-measurement="{{$list->item_qty}}" data-itemId="{{$list->id}}" data-toggle="modal" data-target="#edit">Edit
+                </button></h3> -->
       </div>
     </div>
   </div>
@@ -78,6 +82,30 @@
 </table>
 
 @endif
+
+ <!--  Modal EDIT -->
+
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                    <div class="modal-body"> 
+                    @include('inventory.item.form_edit')
+                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="button" id="modal-form-submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                
+                </div>
+            </div>
+         </div>
 
 
 @endsection
