@@ -17,7 +17,7 @@ class Assembly extends Model
 
      public function ass_dimension()
      {
-         return $this->belongsTo(Inventory::class,'ass_dimension');
+         return $this->belongsTo('App\Item','item_id');
      }
  
 }
