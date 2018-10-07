@@ -61,9 +61,9 @@
                         <option value="0">
                             Buat Process Baru
                         </option>
-                        @foreach ($cuttings as $cutting)
-                            <option value="{{$cutting->reference_id}}">
-                                {{$cutting->reference_id}}
+                        @foreach ($cutting_refs as $cutting_ref)
+                            <option value="{{$cutting_ref->reference_id}}">
+                                {{$cutting_ref->reference_id}}
                             </option>
                         @endforeach
                     </select>

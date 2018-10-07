@@ -109,3 +109,12 @@ Route::post('/item/edit/{id}', [
     'uses' => 'ItemController@update',
    'as' => 'items.update'
  ]);
+
+
+ //Manufacturing Report 
+
+ Route::get('/report','ManufacturingReportController@index');
+
+ Route::post('/report','ManufacturingReportController@create');
+
+ 

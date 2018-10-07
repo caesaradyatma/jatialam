@@ -10,6 +10,7 @@ use App\Inventory;
 use App\Balok;
 use App\Purchasing;
 use DB;
+use App\ManufacturingReport;
 
 class CuttingStageController extends Controller
 {
@@ -50,14 +51,19 @@ class CuttingStageController extends Controller
 
         for($counter = 0; $counter < sizeof($item_array);$counter++){
             $cutting = new CuttingStage;
-            $cutting->item_id = $item_array[$counter];
+            $cutting->item_id = 1;
             $cutting->amount = $amount_array[$counter];
-            $cutting->endproduct_id = $endproduct_array[$counter];
+            $cutting->endproduct_id = $item_array[$counter];
             $cutting->status = $status_array[$counter];
             $cutting->dimension = $dimension_array[$counter];
             $cutting->reference_id = $ref_id;
             $cutting->save();
         }
+
+        $report = new ManufacturingReport;
+        $report->reference_id = $ref_id;
+        $report->status = 1;
+        $report->save();
         
         return redirect('cuttings')->with('success','Process created');
 
@@ -93,6 +99,11 @@ class CuttingStageController extends Controller
         $cutting = CuttingStage::where('reference_id',$reference_id)->where('id',$id)->first();
         $cutting->status = $status;
         $cutting->save();
+
+        $report = ManufacturingReport::where('reference_id',$reference_id)->first();
+        $report->reference_id = $reference_id;
+        $report->status = $status;
+        $report->save();
 
         return redirect('cuttings/'.$reference_id)->with('success','Item Updated');
     }

@@ -7,6 +7,7 @@ use App\Item;
 use App\Status;
 use App\OvenStage;
 use App\FinalStage;
+use App\ManufacturingReport;
 
 class FinalStageController extends Controller
 {
@@ -29,11 +30,6 @@ class FinalStageController extends Controller
         return view('FinalStage.precreate')->with('items',$items)->with('status',$status)->with('ovens',$ovens);
     }
 
-    public function get_ref(Request $request){
-        $reference_id = $request->input('reference_id');
-        $ovens = OvenStage::where('reference_id',$reference_id)->where('deleted_at',NULL)->get();
-        return view('FinalStage.create')->with('ovens',$ovens);
-    }
 
     public function store(Request $request){
         
@@ -54,6 +50,11 @@ class FinalStageController extends Controller
             $final->reference_id = $ref_id;
             $final->save();
         }
+
+        $report = ManufacturingReport::where('reference_id',$ref_id)->first();
+        $report->reference_id = $ref_id;
+        $report->status = 7;
+        $report->save();
         
         return redirect('finals')->with('success','Process created');
 
@@ -79,6 +80,10 @@ class FinalStageController extends Controller
         $final->status = $status;
         $final->save();
 
+        $report = ManufacturingReport::where('reference_id',$reference_id)->first();
+        $report->status = $status;
+        $report->save();
+        
         return redirect('finals/'.$reference_id)->with('success','Item Updated');
     }
 

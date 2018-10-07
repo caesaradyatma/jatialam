@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{$oven->oven_endproduct->cat_name}} {{$oven->oven_endproduct->cat_measurement}}</td>
                     <td>{{$oven->amount}}</td>
-                    <td>dimensi</td>
+                    <td>{{$oven->dimension}}</td>
                     <td>{{$oven->oven_status->name}}</td>
                     <td>
                         {!! Form::open(['action' => ['OvenStageController@update_status',$reference_id],'method' => 'POST']) !!}

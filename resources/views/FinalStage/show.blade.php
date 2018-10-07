@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{$final->final_endproduct->cat_name}} {{$final->final_endproduct->cat_measurement}}</td>
                     <td>{{$final->amount}}</td>
-                    <td>dimensi</td>
+                    <td>{{$final->dimension}}</td>
                     <td>{{$final->final_status->name}}</td>
                     <td>
                         {!! Form::open(['action' => ['FinalStageController@update_status',$reference_id],'method' => 'POST']) !!}
