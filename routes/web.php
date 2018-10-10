@@ -119,6 +119,12 @@ Route::get('/adjustment/create','AdjustmentinvController@create');
 
  Route::get('/report','ManufacturingReportController@index');
 
- Route::post('/report/create','ManufacturingReportController@create');
+ //Route::get('/report/create','ManufacturingReportController@create');
+
+Route::post('/report','ManufacturingReportController@create');
+
+ Route::post('/report','ManufacturingReportController@getContent');
+
+
 
  
