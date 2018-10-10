@@ -115,6 +115,10 @@ Route::post('/item/edit/{id}', [
 
  Route::get('/report','ManufacturingReportController@index');
 
- Route::post('/report','ManufacturingReportController@create');
+//  Route::post('/report','ManufacturingReportController@create');
+
+ Route::post('/report','ManufacturingReportController@getContent');
+
+
 
  
