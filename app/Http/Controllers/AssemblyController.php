@@ -70,8 +70,13 @@ class AssemblyController extends Controller
 
     public function show($ass_number) {
         $datas = Assembly::where('ass_number',$ass_number)->where('ass_delete',NULL)->orderBy('created_at','desc')->paginate(10);
-            return view('assembly.show')->with('datas',$datas)->with('ass_number',$ass_number);
+        $test = Assembly::where('ass_number',$ass_number)->where('ass_delete',NULL)->first();
+        $date_creation = $test->creation_date;
+        $date_final = $test->final_date;
+        $desc_ass = $test->ass_desc;
+            return view('assembly.show')->with('datas',$datas)->with('ass_number',$ass_number)->with('date_c',$date_creation)->with('date_f',$date_final)->with('desc',$desc_ass);
       
         
     }
+
 }

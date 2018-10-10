@@ -56,40 +56,48 @@
     
     @yield('scripts')
 
-    <script>
+   <script>
         $('#edit').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var title = button.data('mytitle')
-        var type = button.data('itemtype') 
-        var sku = button.data('sku') 
-        var measurement = button.data('measurement') 
-
+        var item = button.data('mytitle')
+        var length = button.data('itemlength') 
+        var width = button.data('itemwidth') 
+        var height = button.data('itemheight') 
+        var ass = button.data('sku') 
+        var qty = button.data('measurement') 
+        var itemid = button.data('item_Id') 
         var modal = $(this)
 
-        modal.find('.modal-body #item_name').val(title)
-        modal.find('.modal-body #item_type').val(type)
-        modal.find('.modal-body #item_assembly').val(sku)
-        modal.find('.modal-body #item_qty').val(measurement)
-     
+        modal.find('.modal-body #item_name').val(item)
+        modal.find('.modal-body #item_length').val(length)
+        modal.find('.modal-body #item_width').val(width)
+        modal.find('.modal-body #item_height').val(height)
+        modal.find('.modal-body #item_assembly').val(ass)
+        modal.find('.modal-body #item_qty').val(qty)
+        modal.find('.modal-body #itemid').val(itemid)
 
 })
 
 $('#modal-form-submit').on('click', function(e){
 var button = $(event.relatedTarget) // Button that triggered the modal
-        var title = button.data('mytitle')
-        var type = button.data('itemtype') 
-        var sku = button.data('sku') 
-        var measurement = button.data('measurement') 
-
+        var item = button.data('mytitle')
+        var length = button.data('itemlength') 
+        var width = button.data('itemwidth') 
+        var height = button.data('itemheight') 
+        var ass = button.data('sku') 
+        var qty = button.data('measurement') 
+        var itemid = button.data('itemId') 
         var modal = $(this)
 
 e.preventDefault();
 
-        modal.find('.modal-body #item_name').val(title)
-        modal.find('.modal-body #item_type').val(type)
-        modal.find('.modal-body #item_assembly').val(sku)
-        modal.find('.modal-body #item_qty').val(measurement)
- 
+        modal.find('.modal-body #item_name').val(item)
+        modal.find('.modal-body #item_length').val(length)
+        modal.find('.modal-body #item_width').val(width)
+        modal.find('.modal-body #item_height').val(height)
+        modal.find('.modal-body #item_assembly').val(ass)
+        modal.find('.modal-body #item_qty').val(qty)
+        modal.find('.modal-body #itemid').val(itemid)
 $('#modal-form').submit();
 });
 </script>

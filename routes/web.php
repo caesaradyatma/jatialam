@@ -105,16 +105,20 @@ Route::get('/inventory/destroy/', 'InventoryController@destroy');
 
 Route::post('/delete','InventoryController@delete');
 
-Route::post('/item/edit/{id}', [
+Route::post('/item/update/{id}', [
     'uses' => 'ItemController@update',
-   'as' => 'items.update'
+   'as' => 'items.coba'
  ]);
+
+Route::get('/adjustment','AdjustmentinvController@index');
+
+Route::get('/adjustment/create','AdjustmentinvController@create');
 
 
  //Manufacturing Report 
 
  Route::get('/report','ManufacturingReportController@index');
 
- Route::post('/report','ManufacturingReportController@create');
+ Route::post('/report/create','ManufacturingReportController@create');
 
  

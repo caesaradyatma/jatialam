@@ -4,7 +4,7 @@
     </button>
         <div class="dropdown-container">
             <a href="/inventorypage">Daftar Gudang</a>
-            <a href="#">Pengaturan</a>
+            <a href="/adjustment">Pengaturan</a>
         </div>
     <button class="dropdown-btn">Procurement 
         <i class="fa fa-caret-down"></i>

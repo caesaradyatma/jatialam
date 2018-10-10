@@ -84,25 +84,4 @@
 
 </form>   
 
-<!-- Modal Delete -->
-
-<div class="modal fade" id="delete" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">Konfirmasi Barang</h4>
-                        </div>
-                        <div class="modal-body text-center">
-                            <h3>Anda Yakin Untuk Menghapus Barang?</h3>
-                        </div>
-                        <div class="modal-footer">
-                            @include('inventory.inventory_modaldelete')
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        </div>
-                    </div>
-                </div>
-        </div>
-
-</div>
 @endsection
