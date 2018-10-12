@@ -114,6 +114,8 @@ Route::get('/adjustment','AdjustmentinvController@index');
 
 Route::get('/adjustment/create','AdjustmentinvController@create');
 
+Route::post('/adjustment/adj','AdjustmentinvController@store');
+
 
  //Manufacturing Report 
 
