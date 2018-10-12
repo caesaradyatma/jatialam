@@ -34,6 +34,8 @@ Route::post('/inventory/item','ItemController@store');
 
 Route::get('/inventory/{id}','ItemController@itemShow');
 
+Route::delete('/inventory/{id}','ItemController@destroy')->name('deleteItem');
+
 Route::get('/datatracking','CodeController@index');
 
 Route::get('/inventori/create','InventorypageController@create');

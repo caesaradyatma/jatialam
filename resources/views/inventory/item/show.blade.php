@@ -54,14 +54,17 @@
       <div class="col-sm-2 other">
 
       {{$list->item_description}}
-      <button class="btn btn-default" data-mytitle="{{$list->item_name}}" data-itemlength="{{$list->item_length}}" 
+<!--    <button class="btn btn-default" data-mytitle="{{$list->item_name}}" data-itemlength="{{$list->item_length}}" 
       data-itemwidth="{{$list->item_width}}" data-itemheight="{{$list->item_height}}"
                     data-sku="{{$list->item_assembly}}" 
                     data-measurement="{{$list->item_qty}}" 
                     data-itemId="{{$list->id}}" 
                     data-toggle="modal" data-target="#edit">Edit
-                </button>
+                </button> -->
       </div>
+    <div class="col-sm-2">
+  
+</div>
     </div>
   </div>
 

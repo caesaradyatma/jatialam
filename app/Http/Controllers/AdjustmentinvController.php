@@ -93,4 +93,6 @@ class AdjustmentinvController extends Controller
         $amount->save();
             return true;
      }
+
+     
 }

@@ -71,6 +71,18 @@ class ItemController extends Controller
         return redirect('/inventory')->with('success', 'Item edited');
     }
 
+    public function destroy($id)
+    {
+        $date = date('Y-m-d');
+        $item = Item::find($id);
+        $item->item_measurement = $date;
+        $item->delete();
+
+       
+        $item->save();
+        return redirect('/inventory')->with('success', 'Item removed');
+    }
+
     
 
     
