@@ -18,4 +18,8 @@ class Adjustment extends Model
      public function item_adj() {
         return $this->hasMany(Item::class);
      }
+
+     public function item_detail() {
+        return $this->belongsTo(Item::class);
+     }
 }

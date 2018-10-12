@@ -44,7 +44,7 @@
            <select name="adj_cat" class="form-control">
            @foreach($cats as $cat)
                         @if($cat->cat_delete == null)
-                            <option value="{{$cat->id}}">{{$cat->cat_name }}</option> 
+                            <option value="{{$cat->id}}">{{$cat->cat_name }} {{$cat->length}}x{{$cat->width}}</option> 
                         @endif
              @endforeach  
             </select>               

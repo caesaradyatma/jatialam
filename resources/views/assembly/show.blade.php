@@ -39,7 +39,7 @@
         </tr>
         @foreach($datas as $cutting)
             <tr>
-                <td>{{$cutting->item_ini->item_name}} ( {{$cutting->item_ini->item_length}}x{{$cutting->item_ini->item_width}}x{{$cutting->item_ini->item_height}} )</td>
+                <td>{{$cutting->item_inih->item_name}} ( {{$cutting->item_inih->item_length}}x{{$cutting->item_inih->item_width}}x{{$cutting->item_inih->item_height}} )</td>
                 <td>{{$cutting->ass_unit}}</td>
                 <td>{{$cutting->ass_number}}</td>
                 <td>{{$cutting->ass_assignment}}</td>

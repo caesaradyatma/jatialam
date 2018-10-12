@@ -15,7 +15,7 @@ class Assembly extends Model
      //public stamps
      public $timestamps = true;
 
-     public function item_ini()
+     public function item_inih()
      {
          return $this->belongsTo('App\Item','item_id');
      }
