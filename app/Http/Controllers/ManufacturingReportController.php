@@ -43,7 +43,7 @@ class ManufacturingReportController extends Controller
         //     $content = ManufacturingReport::where('deleted_at',NULL)->where('reference_id',$reference_id)->distinct()->first();
         // }
         
-        $content = ManufacturingReport::where('deleted_at',NULL)->where('reference_id',$reference_id)->distinct()->first();
+        $content = ManufacturingReport::where('deleted_at',NULL)->where('reference_id',$reference_id)->distinct()->orderBy('updated_at','desc')->first();
         
         if($content == NULL){
             $ref_id = "Undefined";

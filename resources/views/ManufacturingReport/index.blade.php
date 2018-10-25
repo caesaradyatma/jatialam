@@ -37,7 +37,7 @@
         </div>
     </div>
     <hr>
-    <table class="table table-striped" id="selectInput">
+    <table class="table table-striped" id="report-content">
         <tr>
             <th>Reference ID</th>
             <th>Nama Proses</th>
@@ -45,7 +45,7 @@
             <th>Diperbarui Pada</th>
         </tr>
         @foreach($reports as $report)
-            <tr id="report-content">
+            <tr>
                 <td>{{$report->reference_id}}</td>
                 <td>{{$report->report_status->category}}</td>
                 <td>{{$report->report_status->name}}</td>
@@ -67,7 +67,7 @@
                 data:$(this).serialize(),
                 success:function(data){
                     console.log(data);
-                    $("#report-content").html("<td>"+data['ref_id']+"</td><td>"+data['stage_name']+"</td><td>"+data['status_name']+"</td><td>"+data['updated_at']['date']+"</td>");
+                    $("#report-content").html("<tr><th>Reference ID</th><th>Nama Proses</th><th>Status</th><th>Diperbarui Pada</th></tr><tr><td>"+data['ref_id']+"</td><td>"+data['stage_name']+"</td><td>"+data['status_name']+"</td><td>"+data['updated_at']['date']+"</td></tr>");
                 }
             })
         });

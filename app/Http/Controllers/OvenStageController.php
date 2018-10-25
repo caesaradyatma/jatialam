@@ -71,20 +71,23 @@ class OvenStageController extends Controller
             $oven->save();
         }
 
-        $check = ManufacturingReport::where('reference_id',$ref_id)->first();
+        // $check = ManufacturingReport::where('reference_id',$ref_id)->first();
+        // if($check == NULL){
+        //     $report = new ManufacturingReport;
+        //     $report->reference_id = $ref_id;
+        //     $report->status = 4;
+        //     $report->save();
+        // }
+        // else{
+        //     $report = ManufacturingReport::where('reference_id',$ref_id)->first();
+        //     $report->status = 4;
+        //     $report->save();
+        // }
         
-        if($check == NULL){
-            $report = new ManufacturingReport;
-            $report->reference_id = $ref_id;
-            $report->status = 4;
-            $report->save();
-        }
-        else{
-            $report = ManufacturingReport::where('reference_id',$ref_id)->first();
-            $report->status = 4;
-            $report->save();
-        }
-        
+        $report = new ManufacturingReport;
+        $report->reference_id = $ref_id;
+        $report->status = 4;
+        $report->save();
         return redirect('ovens')->with('success','Process created');
 
     }
@@ -117,18 +120,22 @@ class OvenStageController extends Controller
         $oven->status = $status;
         $oven->save();
 
-        $report = ManufacturingReport::where('reference_id',$reference_id)->first();
-        if($report == NULL){
-            $report = new ManufacturingReport;
-            $report->reference_id = $reference_id;
-            $report->status = $status;
-            $report->save();
-        }
-        else{
-            $report->status = $status;
-            $report->save();
-        }
+        // $report = ManufacturingReport::where('reference_id',$reference_id)->first();
+        // if($report == NULL){
+        //     $report = new ManufacturingReport;
+        //     $report->reference_id = $reference_id;
+        //     $report->status = $status;
+        //     $report->save();
+        // }
+        // else{
+        //     $report->status = $status;
+        //     $report->save();
+        // }
         
+        $report = new ManufacturingReport;
+        $report->reference_id = $reference_id;
+        $report->status = $status;
+        $report->save();
         return redirect('ovens/'.$reference_id)->with('success','Item Updated');
     }
 

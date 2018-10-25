@@ -51,7 +51,12 @@ class FinalStageController extends Controller
             $final->save();
         }
 
-        $report = ManufacturingReport::where('reference_id',$ref_id)->first();
+        // $report = ManufacturingReport::where('reference_id',$ref_id)->first();
+        // $report->reference_id = $ref_id;
+        // $report->status = 7;
+        // $report->save();
+
+        $report = new ManufacturingReport;
         $report->reference_id = $ref_id;
         $report->status = 7;
         $report->save();
@@ -80,7 +85,12 @@ class FinalStageController extends Controller
         $final->status = $status;
         $final->save();
 
-        $report = ManufacturingReport::where('reference_id',$reference_id)->first();
+        // $report = ManufacturingReport::where('reference_id',$reference_id)->first();
+        // $report->status = $status;
+        // $report->save();
+
+        $report = new ManufacturingReport;
+        $report->reference_id = $reference_id;
         $report->status = $status;
         $report->save();
         

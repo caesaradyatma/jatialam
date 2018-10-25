@@ -100,7 +100,8 @@ class CuttingStageController extends Controller
         $cutting->status = $status;
         $cutting->save();
 
-        $report = ManufacturingReport::where('reference_id',$reference_id)->first();
+        // $report = ManufacturingReport::where('reference_id',$reference_id)->first();
+        $report = new ManufacturingReport;
         $report->reference_id = $reference_id;
         $report->status = $status;
         $report->save();
