@@ -15,7 +15,12 @@
     </div>
     <div class="form-group col-md-4">
       <label for="inputPassword4">Status</label>
-      <input type="text" class="form-control" name="ass_status" id="inputPassword4" placeholder="Kode">
+      <select name="ass_status" class="form-control">
+                <option selected>Pending</option>
+                  <option>Selesai</option>
+                  <option>Batal</option>
+                
+                </select>
     </div>
     <div class="form-group col-md-3">
       <label for="inputPassword4">Tanggal Pembentukan</label>

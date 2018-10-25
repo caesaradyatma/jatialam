@@ -19,6 +19,12 @@ class Item extends Model
       return $this->belongsTo(Inventory::class);
     }
 
+    public function adj_item() {
+      return $this->belongsTo(Adjustment::class);
+   }
+
+  
+
     
 
    

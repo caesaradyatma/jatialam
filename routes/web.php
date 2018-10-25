@@ -34,6 +34,8 @@ Route::post('/inventory/item','ItemController@store');
 
 Route::get('/inventory/{id}','ItemController@itemShow');
 
+Route::delete('/inventory/{id}','ItemController@destroy')->name('deleteItem');
+
 Route::get('/datatracking','CodeController@index');
 
 Route::get('/inventori/create','InventorypageController@create');
@@ -105,17 +107,25 @@ Route::get('/inventory/destroy/', 'InventoryController@destroy');
 
 Route::post('/delete','InventoryController@delete');
 
-Route::post('/item/edit/{id}', [
+Route::post('/item/update/{id}', [
     'uses' => 'ItemController@update',
-   'as' => 'items.update'
+   'as' => 'items.coba'
  ]);
+
+Route::get('/adjustment','AdjustmentinvController@index');
+
+Route::get('/adjustment/create','AdjustmentinvController@create');
+
+Route::post('/adjustment/adj','AdjustmentinvController@store');
 
 
  //Manufacturing Report 
 
  Route::get('/report','ManufacturingReportController@index');
 
-//  Route::post('/report','ManufacturingReportController@create');
+ //Route::get('/report/create','ManufacturingReportController@create');
+
+Route::post('/report','ManufacturingReportController@create');
 
  Route::post('/report','ManufacturingReportController@getContent');
 

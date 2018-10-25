@@ -17,7 +17,7 @@
                <div class="row">
                    <div class="col-lg-3">
                        <label>Tanggal Pembuatan: </label>
-                   <p style="font-weight: bold">{{$assembly->ass_name}}</p>
+                   <p style="font-weight: bold">{{$assembly->creation_date}}</p>
                    </div>
                    <div class="col-lg-3">
                        <label>Produk Akhir : </label>
@@ -25,19 +25,17 @@
                     </div>
                     <div class="col-lg-3">
                            <label>Perkiraan Penyelesaian : </label>
-                           <p style="font-weight: bold">{{$assembly->ass_name}}</p>
+                           <p style="font-weight: bold">{{$assembly->final_date}}</p>
                         </div>
                     <div class="col-lg-3">
                            <label>Status : </label>
-                           {{--
-                           @if(ASD == 'approved')
-                           <p style="font-weight: bold;  background-color: #d5f4e6">ASAD</p>
-                           @elseif(ASD == 'pending')
-                           <p style="font-weight: bold;  background-color: yellow">ASDAD</p>
+                           @if($assembly->ass_status == 'Selesai')
+                           <p style="font-weight: bold;  background-color: #d5f4e6">Selesai</p>
+                           @elseif($assembly->ass_status == 'Pending')
+                           <p style="font-weight: bold;  background-color: yellow">Pending</p>
                            @else
-                           <p style="font-weight: bold;  background-color: #E98AA3">ASDASD</p>
-                           @endif --}}
-
+                           <p style="font-weight: bold;  background-color: #E98AA3">Batal</p>
+                           @endif
                    </div>
                </div>
            </div>

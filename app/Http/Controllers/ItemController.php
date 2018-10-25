@@ -54,20 +54,33 @@ class ItemController extends Controller
 
     public function update(Request $request,$id)
     {
-      $lists = inventory::find($id)->item;
+        $lists = Item::find($id);
        $lists->item_name = $request->input('item_name');
-       $lists->item_type = $request->input('item_type');
-
        $lists->item_length = $request->input('item_length');
+       $lists->item_width = $request->input('item_width');
+       $lists->item_height = $request->input('item_height');
+
+       $lists->item_assembly = $request->input('item_assembly');
  
    
-       $lists->item_assembly = $request->input('item_assembly');
-     
-   
-      
+       $lists->item_qty = $request->input('item_qty');
+
+       return $lists;
    
         $lists->save();
         return redirect('/inventory')->with('success', 'Item edited');
+    }
+
+    public function destroy($id)
+    {
+        $date = date('Y-m-d');
+        $item = Item::find($id);
+        $item->item_measurement = $date;
+        $item->delete();
+
+       
+        $item->save();
+        return redirect('/inventory')->with('success', 'Item removed');
     }
 
     
