@@ -16,9 +16,9 @@
                                         <option value="0">
                                             All
                                         </option>
-                                    @foreach ($ids as $id)
-                                        <option value="{{$id->reference_id}}">
-                                            {{$id->reference_id}}
+                                    @foreach ($reports as $report)
+                                        <option value="{{$report->reference_id}}">
+                                            {{$report->reference_id}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -40,7 +40,7 @@
         <hr>
         <table class="table table-striped" id="report-content">
             <tr>
-                <th>Reference ID</th>
+                <th>Process ID</th>
                 <th>Nama Proses</th>
                 <th>Nama Barang</th>
                 <th>Status</th>
@@ -77,6 +77,16 @@
         $('#getContent').submit(function(e){
             e.preventDefault();
             var reference_id = $('#reference_id').val();
+            var dates = 
+                <?php 
+                    $userTimezone = new DateTimeZone('Asia/Jakarta');
+                    $myTimezone = new DateTimeZone('Europe/London');
+                    $myDateTime = new DateTime($report->updated_at, $myTimezone);
+                    $offset = $userTimezone->getOffset($myDateTime);
+                    $myInterval=DateInterval::createFromDateString((string)$offset . 'seconds');
+                    $myDateTime->add($myInterval);
+                    $result = $myDateTime->format('Y-m-d | H:i:s');
+                ?>
             $.ajax({
                 type:'POST',
                 url:'/report',
