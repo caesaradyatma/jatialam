@@ -47,11 +47,11 @@
             </div>
         </div>
     </div>
-    <h1>Check Reference</h1>
+    <h1>Check Proses</h1>
     {!! Form::open(['action' => 'FinalStageController@create','method' => 'POST']) !!}
         <table class="table table-striped">
             <tr>
-                <th colspan="2">Reference ID</th>
+                <th colspan="2">Process ID</th>
             </tr>
             <tr>
                 <td>

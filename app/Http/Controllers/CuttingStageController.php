@@ -62,6 +62,7 @@ class CuttingStageController extends Controller
 
         $report = new ManufacturingReport;
         $report->reference_id = $ref_id;
+        $report->endproduct_id = $
         $report->status = 1;
         $report->save();
         

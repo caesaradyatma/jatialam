@@ -42,4 +42,10 @@
     <a href="#contact">Delivery</a>
     <a href="/assembly">Assembly</a>
     <a href="/datatracking">Item Retrieval</a>
+    <button class="dropdown-btn">Laporan 
+        <i class="fa fa-caret-down"></i>
+    </button>
+        <div class="dropdown-container">
+            <a href="/report">Lihat Laporan</a>
+        </div>
 </div>

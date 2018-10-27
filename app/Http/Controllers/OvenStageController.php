@@ -9,11 +9,14 @@ use App\OvenStage;
 use App\CuttingStage;
 use App\Inventory;
 use App\ManufacturingReport;
+use DateTime;
+use DateTimeZone;
+use DateInterval;
 
 class OvenStageController extends Controller
 {
     public function index(){
-        $ovens = OvenStage::where('deleted_at',NULL)->paginate(10)->all();
+        $ovens = OvenStage::where('deleted_at',NULL)->paginate(10);
         return view('OvenStage.index')->with('ovens',$ovens);
     }
 
@@ -48,10 +51,12 @@ class OvenStageController extends Controller
         $item_array = array();
         $status_array = array();
         $amount_array = array();
+        $dimension_array = array();
 
         $item_array = $request->input('item_id');
         $amount_array = $request->input('amount');
         $status_array = $request->input('status'); 
+        $dimension_array = $request->input('dimension');
         $size = sizeof($item_array);
 
         if($request->input('reference_id') == 0){
@@ -65,6 +70,7 @@ class OvenStageController extends Controller
             $oven = new OvenStage;
             $oven->item_id = $item_array[$counter];;
             $oven->endproduct_id = $item_array[$counter];
+            $oven->dimension = $dimension_array[$counter];
             $oven->amount = $amount_array[$counter];
             $oven->status = $status_array[$counter];
             $oven->reference_id = $ref_id;

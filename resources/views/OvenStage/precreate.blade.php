@@ -16,17 +16,15 @@
             <div class="modal-body">
                 <table class="table table-striped">
                     <tr>
-                        <th>Ref ID</th>
-                        <th>ID Balok</th>
+                        <th>Process ID</th>
                         <th>Jumlah</th>
-                        <th>Barang Akhir</th>
+                        <th>Nama Barang</th>
                         <th>Dimensi</th>
                         <th>Status</th>
                     </tr>
                     @foreach($cuttings as $cutting)
                         <tr>
                             <td>{{$cutting->reference_id}}</td>
-                            <td>{{$cutting->cutting_item->code}}</td>
                             <td>{{$cutting->amount}}</td>
                             <td>{{$cutting->endproduct->cat_name}} {{$cutting->endproduct->cat_measurement}}</td>
                             <td>{{$cutting->dimension}}</td>
@@ -53,7 +51,7 @@
     {!! Form::open(['action' => 'OvenStageController@create','method' => 'POST']) !!}
         <table class="table table-striped">
             <tr>
-                <th colspan="2">Reference ID</th>
+                <th colspan="2">Process ID</th>
             </tr>
             <tr>
                 <td>

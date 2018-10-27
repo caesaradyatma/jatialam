@@ -15,6 +15,7 @@
                 <th>Dimensi</th>
                 <th>Jumlah</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
             {{--  <tr>
                 <td>
@@ -48,7 +49,7 @@
             @if($reference_id == 0)
                 <tr>
                     <td>
-                        New
+                        Process Baru
                     </td>
                     <td>
                         <select name="item_id[]" class="form-control">
@@ -60,10 +61,10 @@
                         </select>
                     </td>
                     <td>
-                        dimension
+                        <input type="text" name="dimension[]" class='form-control' placeholder="PanjangxLebarxTinggi" required>
                     </td>
                     <td>
-                        <input type="number" name="amount[]" class="form-control" placeholder="Amount" required >
+                        <input type="number" name="amount[]" class="form-control" placeholder="Jumlah" required >
                     </td>
                     <td>
                         <select name="status[]" class="form-control">
@@ -73,6 +74,9 @@
                                 </option>
                             @endforeach
                         </select>
+                    </td>
+                    <td>
+                        <button class="add_form_field">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
                     </td>
                 </tr>
             @else
@@ -89,9 +93,9 @@
                             {{$cutting->dimension}}
                         </td>
                         <td>
-                            <input type="number" name="amount[]" class="form-control" placeholder="Amount" required value={{$cutting->amount}}>
+                            <input type="number" name="amount[]" class="form-control" placeholder="Jumlah" required value={{$cutting->amount}}>
                         </td>
-                        <td>
+                        <td colspan="2">
                             <select name="status[]" class="form-control">
                                 @foreach ($status as $value)
                                     <option value="{{$value->id}}">
@@ -129,7 +133,7 @@
             if(x < max_fields){
                 x++;
 
-                $(wrapper).append('<tr><td></td><td><input type="number" name="amount[]" class="form-control" placeholder="Amount" required></td><td></td><td><select name="status[]" class="form-control">@foreach($status as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); //add input box
+                $(wrapper).append('<tr><td>Process Baru</td><td><select name="item_id[]" class="form-control">@foreach($inventorylists as $inventorylist)<option value="{{$inventorylist->id}}">{{$inventorylist->cat_name}} {{$inventorylist->cat_measurement}}</option>@endforeach</select></td><td><input type="text" name="dimension[]" class="form-control" placeholder="PanjangxLebarxTinggi"></td><td><input type="number" name="amount[]" class="form-control" placeholder="Jumlah"></td><td><select name="status[]" class="form-control">@foreach($status as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); //add input box
             }
             else
             {
