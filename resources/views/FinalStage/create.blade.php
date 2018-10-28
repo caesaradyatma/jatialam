@@ -1,53 +1,57 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="container-fluid">
+        <h1>Buat Proses Finalisasi Baru</h1>
+        <hr>
+        {{--  Add Item Button  --}}
+        {{--  <button class="add_form_field btn btn-primary">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>  --}}
 
-    <h1>Buat Proses Finalization Baru</h1>
-    <hr>
-    {{--  Add Item Button  --}}
-    {{--  <button class="add_form_field btn btn-primary">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>  --}}
-
-    {!! Form::open(['action' => 'FinalStageController@store','method' => 'POST']) !!}
-        <table class="table table-striped" id="selectInput">
-            <tr>
-                <th>Reference ID</th>
-                <th>Nama Barang</th>
-                <th>Dimensi</th>
-                <th>Jumlah</th>
-                <th>Status</th>
-            </tr>
-            @foreach($ovens as $oven)
+        {!! Form::open(['action' => 'FinalStageController@store','method' => 'POST']) !!}
+            <table class="table table-striped" id="selectInput">
                 <tr>
-                    <td>
-                        {{$reference_id}}
-                    </td>
-                    <td>
-                        <input type="hidden" name="item_id[]" value={{$oven->endproduct_id}}>
-                        {{$oven->oven_endproduct->cat_name}} {{$oven->oven_endproduct->cat_measurement}}
-                    </td>
-                    <td>
-                        {{$oven->dimension}}
-                    </td>
-                    <td>
-                        <input type="number" name="amount[]" class="form-control" placeholder="Amount" required value={{$oven->amount}}>
-                    </td>
-                    <td>
-                        <select name="status[]" class="form-control">
-                            @foreach ($status as $value)
-                                <option value="{{$value->id}}">
-                                {{$value->name}}
-                                </option>
-                            @endforeach
-                        </select>
-                    </td>
+                    <th>Reference ID</th>
+                    <th>Nama Barang</th>
+                    <th>Dimensi</th>
+                    <th>Jumlah</th>
+                    <th>Status</th>
+                    <th>Estimasi Waktu Selesai</th>
                 </tr>
-            @endforeach
-        </table>
-        {{Form::hidden('reference_id',$reference_id)}}
-        {{Form::hidden('_method','POST')}}
-        {{Form::submit('Submit',['class'=>'btn btn-primary form-control'])}}
-    {!! Form::close() !!}
-    
+                @foreach($ovens as $oven)
+                    <tr>
+                        <td>
+                            {{$reference_id}}
+                        </td>
+                        <td>
+                            <input type="hidden" name="item_id[]" value={{$oven->endproduct_id}}>
+                            {{$oven->oven_endproduct->cat_name}} {{$oven->oven_endproduct->cat_measurement}}
+                        </td>
+                        <td>
+                            {{$oven->dimension}}
+                        </td>
+                        <td>
+                            <input type="number" name="amount[]" class="form-control" placeholder="Amount" required value={{$oven->amount}}>
+                        </td>
+                        <td>
+                            <select name="status[]" class="form-control">
+                                @foreach ($status as $value)
+                                    <option value="{{$value->id}}">
+                                    {{$value->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="datetime-local" name="estimation_time[]" class="form-control" required>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+            {{Form::hidden('reference_id',$reference_id)}}
+            {{Form::hidden('_method','POST')}}
+            {{Form::submit('Submit',['class'=>'btn btn-primary form-control'])}}
+        {!! Form::close() !!}
+    </div>
 @endsection
 
 @section('scripts')

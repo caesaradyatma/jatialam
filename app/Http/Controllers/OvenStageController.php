@@ -12,6 +12,7 @@ use App\ManufacturingReport;
 use DateTime;
 use DateTimeZone;
 use DateInterval;
+use DB;
 
 class OvenStageController extends Controller
 {
@@ -34,7 +35,24 @@ class OvenStageController extends Controller
     
     public function precreate(){
         $cuttings = CuttingStage::where('deleted_at',NULL)->where('status',3)->get();
-        $cutting_refs = CuttingStage::where('deleted_at',NULL)->where('status',3)->distinct()->get(['reference_id']);
+        //check if process is already created
+        $clean_refs = DB::table('cutting_stages')
+                        ->join('oven_stages','cutting_stages.reference_id','=','oven_stages.reference_id')
+                        ->select('oven_stages.reference_id')
+                        ->distinct('reference_id')
+                        ->get();
+        $clean_array = array();
+        foreach($clean_refs as $clean_ref){
+            array_push($clean_array, $clean_ref->reference_id);
+        }
+        $cutting_refs = DB::table('cutting_stages')
+                        ->where('deleted_at',NULL)
+                        ->where('status',3)
+                        ->WhereNotIn('reference_id',$clean_array)
+                        ->distinct()
+                        ->select('reference_id')
+                        ->get();
+        // $cutting_refs = CuttingStage::where('deleted_at',NULL)->where('status',3)->distinct()->get(['reference_id']);
         $items = Item::all();
         $status = Status::all();
         return view('OvenStage.precreate')->with('items',$items)->with('status',$status)->with('cuttings',$cuttings)->with('cutting_refs',$cutting_refs);
@@ -52,11 +70,13 @@ class OvenStageController extends Controller
         $status_array = array();
         $amount_array = array();
         $dimension_array = array();
+        $estimation_array = array();
 
         $item_array = $request->input('item_id');
         $amount_array = $request->input('amount');
         $status_array = $request->input('status'); 
         $dimension_array = $request->input('dimension');
+        $estimation_array = $request->input('time_estimate');
         $size = sizeof($item_array);
 
         if($request->input('reference_id') == 0){
@@ -74,6 +94,7 @@ class OvenStageController extends Controller
             $oven->amount = $amount_array[$counter];
             $oven->status = $status_array[$counter];
             $oven->reference_id = $ref_id;
+            $oven->estimation_time = $estimation_array[$counter];
             $oven->save();
         }
 

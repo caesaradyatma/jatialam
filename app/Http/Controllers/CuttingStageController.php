@@ -41,11 +41,13 @@ class CuttingStageController extends Controller
         $amount_array = array();
         $status_array = array();
         $dimension_array = array();
+        $estimation_array = array();
 
         $item_array = $request->input('item_id');
         $amount_array = $request->input('amount');
         $status_array = $request->input('status');
         $dimension_array = $request->input('dimension');
+        $estimation_array = $request->input('estimation_time');
         
         $ref_id = uniqid();
 
@@ -57,21 +59,23 @@ class CuttingStageController extends Controller
             $cutting->status = $status_array[$counter];
             $cutting->dimension = $dimension_array[$counter];
             $cutting->reference_id = $ref_id;
+            $cutting->estimation_time = $estimation_array[$counter];
             $cutting->save();
         }
+        $ids = CuttingStage::where('deleted_at',NULL)->orderBy('created_at','desc')->get();
+        for($counter = 0; $counter < sizeof($item_array);$counter++){
+            $report = new ManufacturingReport;
+            $report->reference_id = $ref_id;
+            $report->status = 1;
+            //$report->item_id = $ids[$counter]
+            $report->save();
+        }
 
-        $report = new ManufacturingReport;
-        $report->reference_id = $ref_id;
-        $report->status = 1;
-        $report->save();
-        
         return redirect('cuttings')->with('success','Process created');
 
     }
     
     public function show($reference_id){
-
-
 
         $cuttings = CuttingStage::where('reference_id',$reference_id)->where('deleted_at',NULL)->get();
         $status = Status::where('deleted_at',NULL)->where('category','cutting')->get();

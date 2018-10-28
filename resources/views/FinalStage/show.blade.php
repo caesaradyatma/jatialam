@@ -15,16 +15,36 @@
                 <th>Nama Barang</th>
                 <th>Jumlah</th>
                 <th>Dimensi</th>
+                <th>Waktu Mulai</th>
+                <th>Estimasi Waktu Selesai</th>
+                <th>Waktu Update Terakhir</th>
                 <th>Status</th>
                 <th colspan="2">Update Status</th>
-                <th>Waktu Mulai</th>
-                <th>Waktu Update Terakhir</th>
             </tr>
             @foreach($finals as $final)
                     <tr>
                         <td>{{$final->final_endproduct->cat_name}} {{$final->final_endproduct->cat_measurement}}</td>
                         <td>{{$final->amount}}</td>
                         <td>{{$final->dimension}}</td>
+                        <td>
+                            <?php
+                                /*$userTimezone = new DateTimeZone('Asia/Jakarta');
+                                $myTimezone = new DateTimeZone('Europe/London');
+                                $myDateTime = new DateTime($final->created_at, $myTimezone);
+                                $offset = $userTimezone->getOffset($myDateTime);
+                                $myInterval=DateInterval::createFromDateString((string)$offset . 'seconds');
+                                $myDateTime->add($myInterval);
+                                $result = $myDateTime->format('Y-m-d | H:i:s');
+                                echo $result;*/
+                            ?>
+                            {{$final->created_at}}
+                        </td>
+                        <td>
+                            {{$final->estimation_time}}
+                        </td>
+                        <td>
+                            {{$final->updated_at}}
+                        </td>
                         <td>{{$final->final_status->name}}</td>
                         <td>
                             {!! Form::open(['action' => ['FinalStageController@update_status',$reference_id],'method' => 'POST']) !!}
@@ -44,30 +64,6 @@
                                     {{Form::submit('Update',['class'=>'btn btn-primary'])}}
                                 @endif
                             {!!Form::close()!!}
-                        </td>
-                        <td>
-                            <?php
-                                $userTimezone = new DateTimeZone('Asia/Jakarta');
-                                $myTimezone = new DateTimeZone('Europe/London');
-                                $myDateTime = new DateTime($final->created_at, $myTimezone);
-                                $offset = $userTimezone->getOffset($myDateTime);
-                                $myInterval=DateInterval::createFromDateString((string)$offset . 'seconds');
-                                $myDateTime->add($myInterval);
-                                $result = $myDateTime->format('Y-m-d | H:i:s');
-                                echo $result;
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                                $userTimezone = new DateTimeZone('Asia/Jakarta');
-                                $myTimezone = new DateTimeZone('Europe/London');
-                                $myDateTime = new DateTime($final->updated_at, $myTimezone);
-                                $offset = $userTimezone->getOffset($myDateTime);
-                                $myInterval=DateInterval::createFromDateString((string)$offset . 'seconds');
-                                $myDateTime->add($myInterval);
-                                $result = $myDateTime->format('Y-m-d | H:i:s');
-                                echo $result;
-                            ?>
                         </td>
                     </tr>
                 @endforeach
