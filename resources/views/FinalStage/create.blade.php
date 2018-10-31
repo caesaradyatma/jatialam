@@ -23,7 +23,7 @@
                     </td>
                     <td>
                         <input type="hidden" name="item_id[]" value={{$oven->endproduct_id}}>
-                        {{$oven->oven_endproduct->cat_name}} {{$oven->oven_endproduct->cat_measurement}}
+                    
                     </td>
                     <td>
                         {{$oven->dimension}}

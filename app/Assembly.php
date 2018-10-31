@@ -11,6 +11,8 @@ class Assembly extends Model
 
      //primary key
      public $primarykey = 'id';
+
+     public $incrementing = false;
  
      //public stamps
      public $timestamps = true;
@@ -18,6 +20,11 @@ class Assembly extends Model
      public function item_inih()
      {
          return $this->belongsTo('App\Item','item_id');
+     }
+
+     public function cat_ah()
+     {
+         return $this->belongsTo('App\Inventory','ass_dimension');
      }
  
 }

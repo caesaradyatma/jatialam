@@ -3,10 +3,13 @@
 @section('content')
 <h1>Penyusunan Tiket</h1>
 <hr>
+<a href ="/pdf/{{$test->ass_number}}" class="btn btn-info" style="float:right; margin-bottom: 10px;">Download Data</a>
+
     <table class="table">
         <tr>
             <th>Ref ID</th>
             <td>{{$ass_number}}</td>
+            
         </tr>
 
          <tr>
@@ -48,4 +51,10 @@
             </tr>
             @endforeach
     </table>
+    {{ Form::open(['method' => 'DELETE', 'route' => ['ass.delete', $test->ass_number]]) }}
+             
+                {!! csrf_field() !!}  
+
+                     {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                {{ Form::close() }}
 @endsection

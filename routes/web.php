@@ -129,6 +129,18 @@ Route::post('/report','ManufacturingReportController@create');
 
  Route::post('/report','ManufacturingReportController@getContent');
 
+ Route::get('/pdf/{pdfs}', array('as' => 'pdf', 'uses' => 'PDFController@pdf'));
+ 
+ Route::delete('/tiket/{tikets}', [
+    'uses' => 'AssemblyController@destroy',
+   'as' => 'ass.delete'
+    
+ ]);
 
+ Route::delete('/invetory/{items}', [
+    'uses' => 'ItemController@destroy',
+   'as' => 'ass.delete'
+    
+ ]);
 
  

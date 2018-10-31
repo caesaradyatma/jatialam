@@ -15,15 +15,17 @@ class ItemController extends Controller
 {
     public function itemShow($id){
 
-        $items = Inventory::find($id)->item;
+        $items = Inventory::find($id)->item->where('item_measurement',null);
+        $stuff = Inventory::find($id);
     
-        return view('inventory.item.show')->with(compact('items','status'));
+        return view('inventory.item.show')->with(compact('items','stuff'));
        
     }
 
     public function store(Request $request) {
         $items = new Item;
-        $items->item_name = $request->input('item_name');
+        $ref_id = str_random(4);
+        $items->item_name = $ref_id;
         $items->item_measurement = $request->input('item_measurement'); 
         $items->inventory_id = $request->input('inventory_id');
         $items->item_qty = $request->input('item_qty');
@@ -74,12 +76,11 @@ class ItemController extends Controller
     public function destroy($id)
     {
         $date = date('Y-m-d');
-        $item = Item::find($id);
-        $item->item_measurement = $date;
-        $item->delete();
-
+        $stuff = Item::where('inventory_id','=', $id)->where('item_measurement',null)->first();
+        $stuff->item_measurement = $date;
+        $stuff->save();
        
-        $item->save();
+       
         return redirect('/inventory')->with('success', 'Item removed');
     }
 

@@ -23,14 +23,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">  
-                <div class="panel panel-default">
-                    <div class="panel-heading"></div>
-                        <div class="panel-body">
-                            <center><a href="/balok" class="btn btn-primary"><h4>Daftar Balok</h4></a></center>
-                        </div>
-                </div>
-            </div>
+            
         </div>
 </div>
 

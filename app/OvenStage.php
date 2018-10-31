@@ -12,7 +12,7 @@ class OvenStage extends Model
         return $this->belongsTo('App\Status','status');
     }
 
-    public function oven_endproduct()
+    public function open_produk()
     {
         return $this->belongsTo('App\Inventory','endproduct_id');
     }

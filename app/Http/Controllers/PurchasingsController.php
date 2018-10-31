@@ -31,7 +31,7 @@ class PurchasingsController extends Controller
         ]);
 
         //generate random number
-        $ref_id = uniqid();
+        $ref_id = uniqid(8);
         $item_array = array();
         $amount_array = array();
         $rejected_array = array();
@@ -54,7 +54,7 @@ class PurchasingsController extends Controller
             $purchasing->reference_id = $ref_id;
             $purchasing->save();
         }
-        $ref_id = str_random(5);
+       str_random(3);
         
         
         return redirect('purchasings')->with('success','Data has been inputted');

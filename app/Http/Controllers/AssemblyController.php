@@ -17,7 +17,7 @@ class AssemblyController extends Controller
 
    public function create() {
     
-    $items = Item::all();
+    $items = Item::where('item_measurement',null)->get();
     $cats = Inventory::all();
 
     return view('assembly.create')->with(compact('items','cats'));
@@ -74,9 +74,23 @@ class AssemblyController extends Controller
         $date_creation = $test->creation_date;
         $date_final = $test->final_date;
         $desc_ass = $test->ass_desc;
-            return view('assembly.show')->with('datas',$datas)->with('ass_number',$ass_number)->with('date_c',$date_creation)->with('date_f',$date_final)->with('desc',$desc_ass);
+        $delet = $test->ass_number;
+            return view('assembly.show')->with('test',$test)->with('datas',$datas)->with('ass_number',$ass_number)->with('date_c',$date_creation)->with('date_f',$date_final)->with('desc',$desc_ass);
       
         
+    }
+
+    public function destroy($ass_number)
+    {
+        $date = date('Y-m-d');
+        $items = Assembly::where('ass_number','=', $ass_number)->where('ass_delete',NULL)->get();
+        foreach($items as $item){
+            $item->ass_delete = $date;
+            $item->save();
+        }
+
+    
+        return redirect('/assembly')->with('success', 'Item removed');
     }
 
 }

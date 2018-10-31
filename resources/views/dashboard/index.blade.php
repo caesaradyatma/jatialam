@@ -8,32 +8,40 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <div class="panel panel-warning">
-                <div class="panel-heading"><h4 style="font-weight: bold">Kontrol Barang</h4></div>
+                <div class="panel-heading"><h4 style="font-weight: bold">Produksi Pembentukan</h4></div>
                 <div class="panel-body">
                                 <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>Nama Barang</th>
                                             <th>Kode</th>
-                                            <th>Dimensi</th>
+                                            <th>Bentuk Barang</th>
+                                            <th>Tanggal Kerja</th>
+                                            <th>Tanggal Penyelesaian</th>
                                             <th>Aksi</th>
                                         
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach($ass_detail->unique('ass_name') as $ass)
                                         <tr>   
-                                            <td></td>
-                                            <td></td>
+                        
+                                            <td>{{$ass->ass_number}}</td>
+                                            <td>{{$ass->ass_name}}</td>
+                                            <td>{{$ass->creation_date}}</td>
+                                            <td>{{$ass->final_date}}</td>
+                                            <td>{{$ass->ass_status}}</td>
                                             <td><i class="glyphicon glyphicon-exclamation-sign" style="color:rgb(239, 232, 158);"></i></td>
                                         </tr>
+                                        @endforeach
                                         </tbody>
                                 </table>
+                                {{$ass_detail->links()}}
                      
                
                 </div>
-            <a href="#">
+            <a href="/assembly">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -43,7 +51,7 @@
             </div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-4">
                 <div class="panel panel-info">
                     <div class="panel-heading"><h4 style="font-weight: bold">Gambaran Gudang</h4></div>
                         <div class="panel-body">
@@ -52,7 +60,7 @@
                             </div>
                             <hr>
                             <div class="well" style="border-left: thick solid #5CDFC5;">
-                                <h4> Kebutuhan Barang :  </h4>
+                                <h4> Kebutuhan Barang : {{$item_req}} </h4>
                             </div>
                             <hr>
                             <div class="well" style="border-left: thick solid #4B39FB;">
@@ -142,15 +150,29 @@
 
         <div class="col-lg-4">
             <div class="panel panel-primary">
-                    <div class="panel-heading"><h4 style="font-weight: bold">Pengiriman Order</h4></div>
+                    <div class="panel-heading"><h4 style="font-weight: bold">Pembelian Barang</h4></div>
                     <div class="panel-body">
-                        <div class="well">
-                            <div class="row">
-                                <div class="col-lg-4"></div>
-                                <div class="col-lg-12"><hr></div>
-                                <div class="col-lg-6"><h5><b>Jumlah Kayu Dipesan</b></h5> <h2>11</h2></div>
-                            </div>
-                        </div>
+                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Tanggal Datang</th>
+                                            <th>Kode</th>
+                                           
+                                        
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($pro_detail->unique('reference_id') as $ass)
+                                        <tr>   
+                        
+                                            <td>{{$ass->arrival_date}}</td>
+                                            <td><a href="purchasings/{{$ass->reference_id}}">{{$ass->reference_id}}</td>
+                                            
+                                        </tr>
+                                        @endforeach
+                                        </tbody>
+                                </table>
+                                {{$pro_detail->links()}}
                       
                     </div>
                     <a href="#">

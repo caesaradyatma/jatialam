@@ -8,11 +8,6 @@
 {!! Form::open(['action'=> 'ItemController@store','method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
         <div class="form-group">
-            {{Form::label('item_name','No Part')}}
-            {{Form::text('item_name','',['class' => 'form-control', 'placeholder' => 'Nomor Barang'])}}
-        </div>
-
-        <div class="form-group">
             {{Form::label('item_qty','Total Dibutuhkan')}}
             {{Form::text('item_qty','',['class' => 'form-control', 'placeholder' => 'Kode Kategori Barang'])}}
         </div>

@@ -55,6 +55,13 @@
 
       {{$list->item_description}}
 
+      {{ Form::open(['method' => 'DELETE', 'route' => ['ass.delete', $stuff->id]]) }}
+             
+             {!! csrf_field() !!}  
+
+                  {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+             {{ Form::close() }}
+
       </div>
 
     

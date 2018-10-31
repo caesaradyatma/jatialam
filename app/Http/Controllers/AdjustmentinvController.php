@@ -26,13 +26,14 @@ class AdjustmentinvController extends Controller
     public function store(Request $request) {
 
         $adjusts = new Adjustment;
+        $ref_id = str_random(4);
         $adjusts->adj_reason = $request->input('adj_reason');
         $adjusts->adj_date = $request->input('adj_date'); 
         $adjusts->adj_cat = $request->input('adj_cat');
         $adjusts->adj_items = $request->input('adj_items');
         $adjusts->adj_qty = $request->input('adj_qty');
         $adjusts->adj_ass = $request->input('adj_ass');
-        $adjusts->adj_itemcode = $request->input('adj_itemcode');
+        $adjusts->adj_itemcode = $ref_id;
         $adjusts->adj_length = $request->input('adj_length');
         $adjusts->adj_width = $request->input('adj_width');
         $adjusts->adj_height = $request->input('adj_height');

@@ -41,9 +41,7 @@
            </div>
            <div class="panel-footer"> 
                <a href ="assembly/{{$assembly->ass_number}}" class="btn btn-info">Manage</a>
-                  <div class="col-md-offset-10">
-                   Created by ary
-               </div> 
+           
            </div>
         </div>
     </div>

@@ -30,7 +30,7 @@
                     @foreach($ovens as $oven)
                         <tr>
                             <td>{{$oven->reference_id}}</td>
-                            <td>{{$oven->oven_endproduct->cat_name}} {{$oven->oven_endproduct->cat_measurement}}</td>
+                          
                             <td>{{$oven->amount}}</td>
                             <td>{{$oven->dimension}}</td>
                             <td>{{$oven->oven_status->name}}</td>

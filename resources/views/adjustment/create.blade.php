@@ -56,11 +56,6 @@
     </div>
 
 
-      <div class="form-group">
-        {{Form::label('adj_itemcode','Kode Barang Terbaru')}}
-        {{Form::text('adj_itemcode','',['class' => 'form-control', 'placeholder' => 'Kode Nama Terbaru'])}}
-    </div>
-
     <div class="form-group">
         {{Form::label('adj_length','Panjang Pintu')}}
         {{Form::number('adj_length','0',['class' => 'form-control', 'placeholder' => 'Ukuran Panjang'])}}
