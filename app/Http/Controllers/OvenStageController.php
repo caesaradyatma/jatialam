@@ -9,11 +9,15 @@ use App\OvenStage;
 use App\CuttingStage;
 use App\Inventory;
 use App\ManufacturingReport;
+use DateTime;
+use DateTimeZone;
+use DateInterval;
+use DB;
 
 class OvenStageController extends Controller
 {
     public function index(){
-        $ovens = OvenStage::where('deleted_at',NULL)->paginate(10)->all();
+        $ovens = OvenStage::where('deleted_at',NULL)->paginate(10);
         return view('OvenStage.index')->with('ovens',$ovens);
     }
 
@@ -31,7 +35,24 @@ class OvenStageController extends Controller
     
     public function precreate(){
         $cuttings = CuttingStage::where('deleted_at',NULL)->where('status',3)->get();
-        $cutting_refs = CuttingStage::where('deleted_at',NULL)->where('status',3)->distinct()->get(['reference_id']);
+        //check if process is already created
+        $clean_refs = DB::table('cutting_stages')
+                        ->join('oven_stages','cutting_stages.reference_id','=','oven_stages.reference_id')
+                        ->select('oven_stages.reference_id')
+                        ->distinct('reference_id')
+                        ->get();
+        $clean_array = array();
+        foreach($clean_refs as $clean_ref){
+            array_push($clean_array, $clean_ref->reference_id);
+        }
+        $cutting_refs = DB::table('cutting_stages')
+                        ->where('deleted_at',NULL)
+                        ->where('status',3)
+                        ->WhereNotIn('reference_id',$clean_array)
+                        ->distinct()
+                        ->select('reference_id')
+                        ->get();
+        // $cutting_refs = CuttingStage::where('deleted_at',NULL)->where('status',3)->distinct()->get(['reference_id']);
         $items = Item::all();
         $status = Status::all();
         return view('OvenStage.precreate')->with('items',$items)->with('status',$status)->with('cuttings',$cuttings)->with('cutting_refs',$cutting_refs);
@@ -48,10 +69,14 @@ class OvenStageController extends Controller
         $item_array = array();
         $status_array = array();
         $amount_array = array();
+        $dimension_array = array();
+        $estimation_array = array();
 
         $item_array = $request->input('item_id');
         $amount_array = $request->input('amount');
         $status_array = $request->input('status'); 
+        $dimension_array = $request->input('dimension');
+        $estimation_array = $request->input('time_estimate');
         $size = sizeof($item_array);
 
         if($request->input('reference_id') == 0){
@@ -65,26 +90,31 @@ class OvenStageController extends Controller
             $oven = new OvenStage;
             $oven->item_id = $item_array[$counter];;
             $oven->endproduct_id = $item_array[$counter];
+            $oven->dimension = $dimension_array[$counter];
             $oven->amount = $amount_array[$counter];
             $oven->status = $status_array[$counter];
             $oven->reference_id = $ref_id;
+            $oven->estimation_time = $estimation_array[$counter];
             $oven->save();
         }
 
-        $check = ManufacturingReport::where('reference_id',$ref_id)->first();
+        // $check = ManufacturingReport::where('reference_id',$ref_id)->first();
+        // if($check == NULL){
+        //     $report = new ManufacturingReport;
+        //     $report->reference_id = $ref_id;
+        //     $report->status = 4;
+        //     $report->save();
+        // }
+        // else{
+        //     $report = ManufacturingReport::where('reference_id',$ref_id)->first();
+        //     $report->status = 4;
+        //     $report->save();
+        // }
         
-        if($check == NULL){
-            $report = new ManufacturingReport;
-            $report->reference_id = $ref_id;
-            $report->status = 4;
-            $report->save();
-        }
-        else{
-            $report = ManufacturingReport::where('reference_id',$ref_id)->first();
-            $report->status = 4;
-            $report->save();
-        }
-        
+        $report = new ManufacturingReport;
+        $report->reference_id = $ref_id;
+        $report->status = 4;
+        $report->save();
         return redirect('ovens')->with('success','Process created');
 
     }
@@ -117,18 +147,22 @@ class OvenStageController extends Controller
         $oven->status = $status;
         $oven->save();
 
-        $report = ManufacturingReport::where('reference_id',$reference_id)->first();
-        if($report == NULL){
-            $report = new ManufacturingReport;
-            $report->reference_id = $reference_id;
-            $report->status = $status;
-            $report->save();
-        }
-        else{
-            $report->status = $status;
-            $report->save();
-        }
+        // $report = ManufacturingReport::where('reference_id',$reference_id)->first();
+        // if($report == NULL){
+        //     $report = new ManufacturingReport;
+        //     $report->reference_id = $reference_id;
+        //     $report->status = $status;
+        //     $report->save();
+        // }
+        // else{
+        //     $report->status = $status;
+        //     $report->save();
+        // }
         
+        $report = new ManufacturingReport;
+        $report->reference_id = $reference_id;
+        $report->status = $status;
+        $report->save();
         return redirect('ovens/'.$reference_id)->with('success','Item Updated');
     }
 

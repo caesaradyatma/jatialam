@@ -29,6 +29,9 @@
         @include('inc.navbar')  
 
       <div class = "main">  
+          <div class="container-fluid">
+            @include('inc.alerts')
+          </div>
             @yield('content')
       </div>
 

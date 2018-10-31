@@ -13,7 +13,7 @@ use Response;
 class ManufacturingReportController extends Controller
 {
     public function index(){
-        $ids = CuttingStage::where('deleted_at',NULL)->distinct()->get(['reference_id']);
+        $ids = CuttingStage::where('deleted_at',NULL)->distinct()->orderBy('status','asc')->get(['reference_id']);
         $reports = ManufacturingReport::where('deleted_at',NULL)->paginate(10);
 
         return view('ManufacturingReport.index')->with('reports',$reports)->with('ids',$ids);
@@ -43,7 +43,7 @@ class ManufacturingReportController extends Controller
         //     $content = ManufacturingReport::where('deleted_at',NULL)->where('reference_id',$reference_id)->distinct()->first();
         // }
         
-        $content = ManufacturingReport::where('deleted_at',NULL)->where('reference_id',$reference_id)->distinct()->first();
+        $content = ManufacturingReport::where('deleted_at',NULL)->where('reference_id',$reference_id)->distinct()->orderBy('updated_at','desc')->first();
         
         if($content == NULL){
             $ref_id = "Undefined";

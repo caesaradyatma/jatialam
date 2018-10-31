@@ -10,6 +10,7 @@
                 <th>Jumlah</th>
                 <th>Dimensi</th>
                 <th>Status</th>
+                <th>Estimasi Waktu Selesai</th>
                 <th>Action</th>
             </tr>
             <tr>
@@ -46,7 +47,10 @@
                     </select>
                 </td>
                 <td>
-                    
+                    <input type="datetime-local" name="estimation_time[]" class="form-control">
+                </td>
+                <td>
+                    <button class="add_form_field btn btn-primary">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
                 </td>
             </tr>
             
@@ -56,7 +60,6 @@
         {{Form::submit('Submit',['class'=>'btn btn-primary form-control'])}}
         
     {!! Form::close() !!}
-    <button class="add_form_field">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
 @endsection
 
 @section('scripts')
@@ -78,7 +81,7 @@
                 x++;
 
                 //$(wrapper).append('<tr><td><select name="item_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_name}}</option>@endforeach</select></td><td><input type="number" name="amount[]" class="form-control" placeholder="Amount" required></td><td><select name="endproduct_id[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_name}}</option>@endforeach</select></td><td><select name="dimension[]" class="form-control">@foreach($items as $item)<option value="{{$item->id}}">{{$item->item_measurement}}</option>@endforeach</select></td><td><select name="status[]" class="form-control">@foreach($status as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); 
-                $(wrapper).append('<tr><td><select name="item_id[]" class="form-control">@foreach($inventories as $inventory)<option value="{{$inventory->id}}">{{$inventory->cat_name}} {{$inventory->cat_measurement}}</option>@endforeach</select></td><td><input type="number" name="amount[]" class="form-control" placeholder="Amount" required></td><td><input type="text" name="dimension[]" class="form-control"></td><td><select name="status[]" class="form-control">@foreach($status as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); 
+                $(wrapper).append('<tr><td><select name="item_id[]" class="form-control">@foreach($inventories as $inventory)<option value="{{$inventory->id}}">{{$inventory->cat_name}} {{$inventory->cat_measurement}}</option>@endforeach</select></td><td><input type="number" name="amount[]" class="form-control" placeholder="Amount" required></td><td><input type="text" name="dimension[]" class="form-control"></td><td><select name="status[]" class="form-control">@foreach($status as $value)<option value="{{$value->id}}">{{$value->name}}</option>@endforeach</select></td><td><input type="datetime-local" name="estimation_time[]" class="form-control"></td><td><a href="#" class="delete btn btn-danger">Delete</a></td></tr>'); 
             }
             else
             {
